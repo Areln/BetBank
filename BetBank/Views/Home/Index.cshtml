@@ -1,8 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model EventsRootobject
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <table>
+        <tr>
+            <th>EventId</th>
+            <th>League</th>
+        </tr>
+
+        @{
+            foreach (Event item in Model.events)
+            {
+                <tr>
+                    <td>@item.event_id</td>
+                    <td>@item.teams[0].name VS @item.teams[1].name</td>
+                    <td>@item.lines._1.affiliate.affiliate_name : @item.lines._1.moneyline.moneyline_away / @item.lines._1.moneyline.moneyline_home</td>
+                </tr>
+            }
+
+        }
+    </table>
