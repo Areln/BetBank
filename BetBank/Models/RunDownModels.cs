@@ -25,11 +25,29 @@ namespace BetBank.Models
         public DateTime event_date { get; set; }
         public int rotation_number_away { get; set; }
         public int rotation_number_home { get; set; }
+        public Score score { get; set; }
         public Team[] teams { get; set; }
         public Teams_Normalized[] teams_normalized { get; set; }
         public Lines lines { get; set; }
     }
-
+    public class Score
+    {
+        public string event_id { get; set; }
+        public string event_status { get; set; }
+        public int score_away { get; set; }
+        public int score_home { get; set; }
+        public int winner_away { get; set; }
+        public int winner_home { get; set; }
+        public object[] score_away_by_period { get; set; }
+        public object[] score_home_by_period { get; set; }
+        public string venue_name { get; set; }
+        public string venue_location { get; set; }
+        public int game_clock { get; set; }
+        public string display_clock { get; set; }
+        public int game_period { get; set; }
+        public string broadcast { get; set; }
+        public string event_status_detail { get; set; }
+    }
     public class Lines
     {
         [JsonProperty("1")]

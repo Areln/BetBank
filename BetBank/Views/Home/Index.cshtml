@@ -13,7 +13,7 @@
         </tr>
 
         @{
-            foreach (Event item in Model.events)
+            @*foreach (Event item in Model.events)
             {
                 <tr>
                     <td>@item.teams[0].name VS @item.teams[1].name</td>
@@ -22,7 +22,7 @@
                     <td>@item.lines._3.affiliate.affiliate_name : @item.lines._3.moneyline.moneyline_away / @item.lines._3.moneyline.moneyline_home</td>
                     <td>@item.lines._4.affiliate.affiliate_name : @item.lines._4.moneyline.moneyline_away / @item.lines._4.moneyline.moneyline_home</td>
                 </tr>
-            }
+            }*@
 
         }
     </table>

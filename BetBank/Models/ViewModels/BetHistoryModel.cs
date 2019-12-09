@@ -1,4 +1,4 @@
-﻿using BetBank.Models.DbModels;
+﻿using BetBank.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace BetBank.Models.ViewModels
     public class BetHistoryModel
     {
         public List<TickerGames> TickerGames { get; set; }
-        public List<TempBetRecord> BetRecords { get; set; }
+        public List<RecordOfBets> BetRecords { get; set; }
         public LeagueHistoryRecord LeagueHistory { get; set; }
 
 
