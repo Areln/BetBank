@@ -5,17 +5,22 @@
 
     <table>
         <tr>
-            <th>EventId</th>
             <th>League</th>
+            <th>Affiliate1</th>
+            <th>Affiliate2</th>
+            <th>Affiliate3</th>
+            <th>Affiliate4</th>
         </tr>
 
         @{
             foreach (Event item in Model.events)
             {
                 <tr>
-                    <td>@item.event_id</td>
                     <td>@item.teams[0].name VS @item.teams[1].name</td>
                     <td>@item.lines._1.affiliate.affiliate_name : @item.lines._1.moneyline.moneyline_away / @item.lines._1.moneyline.moneyline_home</td>
+                    <td>@item.lines._2.affiliate.affiliate_name : @item.lines._2.moneyline.moneyline_away / @item.lines._2.moneyline.moneyline_home</td>
+                    <td>@item.lines._3.affiliate.affiliate_name : @item.lines._3.moneyline.moneyline_away / @item.lines._3.moneyline.moneyline_home</td>
+                    <td>@item.lines._4.affiliate.affiliate_name : @item.lines._4.moneyline.moneyline_away / @item.lines._4.moneyline.moneyline_home</td>
                 </tr>
             }
 
