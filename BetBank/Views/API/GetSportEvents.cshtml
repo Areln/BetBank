@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "GetSportEvents";
+}
+
+@model EventsRootobject
+<h1>GetSportEvents</h1>
+
+<div class="tcontainer">
+    <div class="ticker-wrap">
+            <ul class="ticker-move">
+                @foreach (Event item in Model.events)
+                {
+                    <li class="ticker-item">@item.sport_id | @item.event_date</li>
+                    <li class="ticker-item">@item.teams</li>
+                    <li class="ticker-item">@item.lines._1.spread</li>
+                }
+            </ul>
+    </div>
+</div>
