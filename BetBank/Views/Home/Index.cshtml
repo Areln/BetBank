@@ -1,28 +1,86 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
 @model EventsRootobject
 
-    <table>
-        <tr>
-            <th>League</th>
-            <th>Affiliate1</th>
-            <th>Affiliate2</th>
-            <th>Affiliate3</th>
-            <th>Affiliate4</th>
-        </tr>
+<h1 style="text-align: center;">Bet Bank</h1>
 
-        @{
-            @*foreach (Event item in Model.events)
+<div class="tcontainer">
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            @foreach (Event item in Model.events)
             {
-                <tr>
-                    <td>@item.teams[0].name VS @item.teams[1].name</td>
-                    <td>@item.lines._1.affiliate.affiliate_name : @item.lines._1.moneyline.moneyline_away / @item.lines._1.moneyline.moneyline_home</td>
-                    <td>@item.lines._2.affiliate.affiliate_name : @item.lines._2.moneyline.moneyline_away / @item.lines._2.moneyline.moneyline_home</td>
-                    <td>@item.lines._3.affiliate.affiliate_name : @item.lines._3.moneyline.moneyline_away / @item.lines._3.moneyline.moneyline_home</td>
-                    <td>@item.lines._4.affiliate.affiliate_name : @item.lines._4.moneyline.moneyline_away / @item.lines._4.moneyline.moneyline_home</td>
-                </tr>
-            }*@
+                <div class="ticker-item">
+                    @item.event_date<br />
+                    @item.teams[0].name @item.lines._1.spread.point_spread_home<br />
+                    <div style="text-align:center">at</div>
+                    @item.teams[1].name @item.lines._1.spread.point_spread_away<br />
 
-        }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="topnav" id="myTopnav">
+    <a href="../Home/Index">Home</a>
+    <a href="../League/NFLIndex">NFL</a>
+    <a href="../League/NBAIndex">NBA</a>
+    <a href="../League/ESportsIndex">E-Sports</a>
+</div>
+
+<div>
+    <img class="graphImage" src="../img/sportsgraph.png" alt="sports graph" width="600" height="475" />
+</div>
+
+@*<div class="userStats">
+    <h3>User Stats</h3>
+    <table class="table">
+        <tr>
+            <th>Bet History</th>
+            <th>Total W/L</th>
+            <th>Total ROI</th>
+        </tr>
+        <tr>
+            <td>Yesterday Result</td>
+            <td>@ViewBag.UserWinsRecord-@ViewBag.UserLossesRecord</td>
+            <td>@ViewBag.WeeklyROI</td>
+        </tr>
+        <tr>
+            <td>Last 7 Days</td>
+            <td>@ViewBag.UserWinsRecord-@ViewBag.UserLossesRecord</td>
+            <td>@ViewBag.WeeklyROI</td>
+        </tr>
+        <tr>
+            <td>All Time</td>
+            <td>@ViewBag.AllTimeWins-@ViewBag.AllTimeLoses</td>
+            <td>@ViewBag.AllTimeROI</td>
+        </tr>
     </table>
+
+        <p>Leagues and game type user<br /> bets W/L records</p>
+        <table>
+            <tr>
+                <th>League</th>
+                <th>Affiliate1</th>
+                <th>Affiliate2</th>
+                <th>Affiliate3</th>
+                <th>Affiliate4</th>
+            </tr>
+
+            @{
+                foreach (Event item in Model.events)
+                {
+                    <tr>
+                        <td>@item.teams[0].name VS @item.teams[1].name</td>
+                        <td>@item.lines._1.affiliate.affiliate_name : @item.lines._1.moneyline.moneyline_away / @item.lines._1.moneyline.moneyline_home</td>
+                        <td>@item.lines._2.affiliate.affiliate_name : @item.lines._2.moneyline.moneyline_away / @item.lines._2.moneyline.moneyline_home</td>
+                        <td>@item.lines._3.affiliate.affiliate_name : @item.lines._3.moneyline.moneyline_away / @item.lines._3.moneyline.moneyline_home</td>
+                        <td>@item.lines._4.affiliate.affiliate_name : @item.lines._4.moneyline.moneyline_away / @item.lines._4.moneyline.moneyline_home</td>
+                    </tr>
+                }
+
+
+<a href="../Bet/BetHistory">View Bet History</a>
+</div>*@
