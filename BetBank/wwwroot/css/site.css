@@ -119,11 +119,20 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 /*******************/
 
-/*index page css*/
+/* home controller index page css*/
 
 .graphImage {
     float: left;
     margin-bottom: 30px;
+}
+
+.graphlinks{
+    float: left;
+    margin-top: 20px;
+}
+
+.graphlinks ul {
+    float: left;
 }
 
 .userStats {

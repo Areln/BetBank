@@ -2,20 +2,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model EventsRootobject
+
+@model BetBank.Models.ViewModels.HomePageModel
+
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 
 <h1 style="text-align: center;">Bet Bank</h1>
 
 <div class="tcontainer">
     <div class="ticker-wrap">
         <div class="ticker-move">
-            @foreach (Event item in Model.events)
+            @foreach (TickerGames item in Model.TickerGames)
             {
                 <div class="ticker-item">
-                    @item.event_date<br />
-                    @item.teams[0].name @item.lines._1.spread.point_spread_home<br />
+                    @item.TimeOfEvent<br />
+                    @item.HomeTeam @item.HomeOdds<br />
                     <div style="text-align:center">at</div>
-                    @item.teams[1].name @item.lines._1.spread.point_spread_away<br />
+                    @item.AwayTeam @item.AwayOdds<br />
 
                 </div>
             }
@@ -23,64 +29,71 @@
     </div>
 </div>
 
-<div class="topnav" id="myTopnav">
-    <a href="../Home/Index">Home</a>
-    <a href="../League/NFLIndex">NFL</a>
-    <a href="../League/NBAIndex">NBA</a>
-    <a href="../League/ESportsIndex">E-Sports</a>
-</div>
+@if (SignInManager.IsSignedIn(User))
+{
 
-<div>
-    <img class="graphImage" src="../img/sportsgraph.png" alt="sports graph" width="600" height="475" />
-</div>
+    <div class="topnav" id="myTopnav">
+        <a href="../Home/Index">Home</a>
+        <a href="../League/NFLIndex">NFL</a>
+        <a href="../League/NBAIndex">NBA</a>
+        <a href="../League/ESportsIndex">E-Sports</a>
+    </div>
 
-@*<div class="userStats">
-    <h3>User Stats</h3>
-    <table class="table">
-        <tr>
-            <th>Bet History</th>
-            <th>Total W/L</th>
-            <th>Total ROI</th>
-        </tr>
-        <tr>
-            <td>Yesterday Result</td>
-            <td>@ViewBag.UserWinsRecord-@ViewBag.UserLossesRecord</td>
-            <td>@ViewBag.WeeklyROI</td>
-        </tr>
-        <tr>
-            <td>Last 7 Days</td>
-            <td>@ViewBag.UserWinsRecord-@ViewBag.UserLossesRecord</td>
-            <td>@ViewBag.WeeklyROI</td>
-        </tr>
-        <tr>
-            <td>All Time</td>
-            <td>@ViewBag.AllTimeWins-@ViewBag.AllTimeLoses</td>
-            <td>@ViewBag.AllTimeROI</td>
-        </tr>
-    </table>
+    <div>
+        <img class="graphImage" src="../img/sportsgraph.png" alt="sports graph" width="600" height="475" />
+    </div>
 
-        <p>Leagues and game type user<br /> bets W/L records</p>
-        <table>
-            <tr>
-                <th>League</th>
-                <th>Affiliate1</th>
-                <th>Affiliate2</th>
-                <th>Affiliate3</th>
-                <th>Affiliate4</th>
-            </tr>
+    @*@if (SignInManager.IsSignedIn(User))
+    {*@
+        <div class="userStats">
+            <h3>User Stats</h3>
+            <table class="table">
+                <tr>
+                    <th>Bet History</th>
+                    <th>Total W/L</th>
+                    <th>Total ROI</th>
+                </tr>
+                <tr>
+                    <td>Today Results</td>
+                    <td>@Model.UserStats.TodayWLRecord</td>
+                    <td>@Model.UserStats.ReturnOnInvestment</td>
+                </tr>
+                <tr>
+                    <td>Last 7 Days</td>
+                    <td>@Model.UserStats.YesterdayWLRecord</td>
+                    <td>@Model.UserStats.ReturnOnInvestment</td>
+                </tr>
+                <tr>
+                    <td>All Time</td>
+                    <td>@Model.UserStats.AllTimeWLRecord</td>
+                    <td>@Model.UserStats.ReturnOnInvestment</td>
+                </tr>
+            </table>
 
-            @{
-                foreach (Event item in Model.events)
-                {
-                    <tr>
-                        <td>@item.teams[0].name VS @item.teams[1].name</td>
-                        <td>@item.lines._1.affiliate.affiliate_name : @item.lines._1.moneyline.moneyline_away / @item.lines._1.moneyline.moneyline_home</td>
-                        <td>@item.lines._2.affiliate.affiliate_name : @item.lines._2.moneyline.moneyline_away / @item.lines._2.moneyline.moneyline_home</td>
-                        <td>@item.lines._3.affiliate.affiliate_name : @item.lines._3.moneyline.moneyline_away / @item.lines._3.moneyline.moneyline_home</td>
-                        <td>@item.lines._4.affiliate.affiliate_name : @item.lines._4.moneyline.moneyline_away / @item.lines._4.moneyline.moneyline_home</td>
-                    </tr>
-                }
+            <p>Leagues and game type user<br /> bets W/L records</p>
+
+            <a href="../Bet/BetHistory">View Bet History</a>
+        </div>
+
+        <div class="graphLinks">
+            <ul>
+                <li><a href="#">1 Day ||</a>></li>
+                <li><a href="#">1 Week ||</a>></li>
+                <li><a href="#">1 Month ||</a>></li>
+                <li><a href="#">1 Year</a>></li>
+            </ul>
+        </div>
 
 
-<a href="../Bet/BetHistory">View Bet History</a>
-</div>*@
+    //}
+
+}
+
+else
+{
+    
+
+    <div class="sitePreview">
+        <img src="../img/sportsBetting.jfif" alt="Alternate Text" />
+    </div>
+}
