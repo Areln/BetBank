@@ -5,19 +5,19 @@ namespace BetBank.Models
 {
     public partial class EventsTable
     {
-        public EventsTable() 
+        public EventsTable()
         {
-        
+
         }
-        public EventsTable(string _EventId, int _SportId, DateTime _EventDate, string _EventStatus, int _HomeTeamId, int _HomeScore, int _AwayTeamId, int _AwayScore, TimeSpan _GameClock, double _MoneyLineHome, double _MoneyLineAway, double _SpreadHome, double _SpreadAway, double _TotalHome, double _TotalAway, int _LineId) 
+        public EventsTable(string _EventId, int _SportId, DateTime _EventDate, string _EventStatus, string _HomeTeam, int _HomeScore, string _AwayTeam, int _AwayScore, TimeSpan _GameClock, double _MoneyLineHome, double _MoneyLineAway, double _SpreadHome, double _SpreadAway, double _TotalHome, double _TotalAway, int _LineId)
         {
             EventId = _EventId;
             SportId = _SportId;
             EventDate = _EventDate;
             EventStatus = _EventStatus;
-            HomeTeamId = _HomeTeamId;
+            HomeTeam = _HomeTeam;
             HomeScore = _HomeScore;
-            AwayTeamId = _AwayTeamId;
+            AwayTeam = _AwayTeam;
             AwayScore = _AwayScore;
             GameClock = _GameClock;
             MoneyLineHome = _MoneyLineHome;
@@ -33,9 +33,9 @@ namespace BetBank.Models
         public int SportId { get; set; }
         public DateTime EventDate { get; set; }
         public string EventStatus { get; set; }
-        public int HomeTeamId { get; set; }
+        public string HomeTeam { get; set; }
         public int HomeScore { get; set; }
-        public int AwayTeamId { get; set; }
+        public string AwayTeam { get; set; }
         public int AwayScore { get; set; }
         public TimeSpan GameClock { get; set; }
         public double MoneyLineHome { get; set; }

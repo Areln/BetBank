@@ -26,26 +26,32 @@ namespace BetBank.Controllers
         //initial event data gathering to put into database
         public async Task<IActionResult> GetSportEvents(int id)
         {
-            var response = await _client.GetAsync($"/sports/1/events?include=scores");
-            var content = await response.Content.ReadAsAsync<EventsRootobject>();
-
-            PopulateSportEvents(content);
-
-            return View("Index");
+            //nfl id = 2
+            var response = await _client.GetAsync($"/sports/2/events?include=scores");
+            var content = await response.Content.ReadAsAsync<EventsRootobject>(); PopulateSportEvents(content); return View("Index");
         }
-
         public void PopulateSportEvents(EventsRootobject eventsObject)
         {
+            string HomeTeam;
+            string AwayTeam;
             foreach (Event item in eventsObject.events)
             {
-                EventsTable tempEventRecord = new EventsTable(item.event_id, item.sport_id, item.event_date, item.score.event_status, item.rotation_number_home, item.score.score_home, item.rotation_number_away, item.score.score_away, TimeSpan.Parse(item.score.game_clock.ToString()), item.lines._1.moneyline.moneyline_home, item.lines._1.moneyline.moneyline_away, item.lines._1.spread.point_spread_home, item.lines._1.spread.point_spread_away, item.lines._1.total.total_over, item.lines._1.total.total_under, item.lines._1.line_id);
+
+                if (item.teams[0].is_home)
+                {
+                    HomeTeam = item.teams[0].name;
+                    AwayTeam = item.teams[1].name;
+                }
+                else
+                {
+                    HomeTeam = item.teams[1].name;
+                    AwayTeam = item.teams[0].name;
+                }
+                EventsTable tempEventRecord = new EventsTable(item.event_id, item.sport_id, item.event_date, item.score.event_status, HomeTeam, item.score.score_home, AwayTeam, item.score.score_away, TimeSpan.Parse(item.score.game_clock.ToString()), item.lines._1.moneyline.moneyline_home, item.lines._1.moneyline.moneyline_away, item.lines._1.spread.point_spread_home, item.lines._1.spread.point_spread_away, item.lines._1.total.total_over, item.lines._1.total.total_under, item.lines._1.line_id);
                 _context.EventsTable.Add(tempEventRecord);
                 _context.SaveChanges();
             }
         }
-
-
-
 
         public IActionResult Index()
         {
