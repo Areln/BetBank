@@ -8,10 +8,10 @@ namespace BetBank.Models
 
     public class NFLSeasonStatsRoot
     {
-        public NFLSeasonStats[] Property1 { get; set; }
+        public NFLSeasonStatsByTeam[] NFLSeasonStats { get; set; }
     }
 
-    public class NFLSeasonStats
+    public class NFLSeasonStatsByTeam
     {
         public int SeasonType { get; set; }
         public int Season { get; set; }
