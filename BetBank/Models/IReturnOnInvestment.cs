@@ -52,9 +52,18 @@ namespace BetBank.Models
             return currentUserData.BetBankBalance - GetIntitialInvestment(currentUserData) / GetIntitialInvestment(currentUserData) * .1;
         }
 
-        //public UserData GetUserData(string userId)
+        //public TickerBets GetBetData(string eventId)
         //{
 
+        //    foreach (TickerBets oddType in _context.UserData)
+        //    {
+        //        if (entry.UserId == userId)
+        //        {
+        //            return entry;
+
+        //        }
+        //    }
+        //    return null;
         //}
 
 

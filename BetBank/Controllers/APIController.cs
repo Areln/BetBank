@@ -51,7 +51,7 @@ namespace BetBank.Controllers
                     HomeTeam = item.teams[1].name;
                     AwayTeam = item.teams[0].name;
                 }
-                EventsTable tempEventRecord = new EventsTable(item.event_id, item.sport_id, item.event_date, item.score.event_status, HomeTeam, item.score.score_home, AwayTeam, item.score.score_away, TimeSpan.Parse(item.score.game_clock.ToString()), item.lines._1.moneyline.moneyline_home, item.lines._1.moneyline.moneyline_away, item.lines._1.spread.point_spread_home, item.lines._1.spread.point_spread_away, item.lines._1.total.total_over, item.lines._1.total.total_under, item.lines._1.line_id);
+                EventsTable tempEventRecord = new EventsTable(item.event_id, item.sport_id, item.event_date, item.score.event_status, HomeTeam, item.score.score_home, AwayTeam, item.score.score_away, TimeSpan.Parse(item.score.game_clock.ToString()), item.lines._1.moneyline.moneyline_home, item.lines._1.moneyline.moneyline_away, item.lines._1.spread.point_spread_home, item.lines._1.spread.point_spread_away, item.lines._1.total.total_over, item.lines._1.total.total_under, item.lines._1.line_id, item.lines._1.spread.point_spread_away_money, item.lines._1.spread.point_spread_home_money,item.lines._1.total.total_over_money,item.lines._1.total.total_under_money);
                 _context.EventsTable.Add(tempEventRecord);
                 _context.SaveChanges();
             }
