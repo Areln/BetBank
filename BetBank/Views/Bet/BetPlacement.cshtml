@@ -1,0 +1,31 @@
+﻿@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Something";
+}
+@using BetBank.Models.ViewModels
+@model BetPlacingModel
+
+<div class="tcontainer">
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            @foreach (TickerGames item in Model.TickerGames)
+            {
+                <div class="ticker-item">
+                    @item.TimeOfEvent<br />
+                    @item.HomeTeam @item.HomeOdds<br />
+                    <div style="text-align:center">at</div>
+                    @item.AwayTeam @item.AwayOdds<br />
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<form action="../Bet/AddBet" method="post">
+    <input type="hidden" name="EventId" value="@Model.EventId" />
+    <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
+    <input type="hidden" name="BetType" value="@Model.BetType" />
+    <input type="hidden" name="EventDate" value="@Model.EventDate" />
+    <input type="number" name="AmountBet" value="" placeholder="Bet Amount" />
+    <input type="submit" name="" value="Submit" />
+</form>
