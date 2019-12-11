@@ -10,7 +10,7 @@ namespace BetBank.Models.ViewModels
         public string LeagueName { get; set; }
         //users fav book, next cheapest books: dynamic book display
         public List<int> AffiliatesToDisplay { get; set; }
-        public List<Event> LeaguesEvents { get; set; }
+        public List<EventsTable> LeaguesEvents { get; set; }
 
 
     }

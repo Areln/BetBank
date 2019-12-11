@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "NFLIndex";
+}
+
+@model BetBank.Models.ViewModels.LeagueEventsModel
+
+<h1 style="text-align: center;">NFL Games</h1>
+
+<div class="tcontainer">
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            @foreach (EventsTable item in Model.LeaguesEvents)
+            {
+
+                <div class="ticker-item">
+                    @item.EventDate<br />
+                    @item.HomeTeam @item.SpreadHome<br />
+                    <div style="text-align:center">at</div>
+                    @item.AwayTeam @item.SpreadAway<br />
+
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+<div class="topnav" id="myTopnav">
+    <a href="../Home/Index">Home</a>
+    <a href="../Event/NFLIndex">NFL</a>
+    <a href="../Event/NBAIndex">NBA</a>
+    <a href="../Event/ESportsIndex">E-Sports</a>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>Game</th>
+        <th>Spread</th>
+        <th>Money Line</th>
+        <th>Over/Under</th>
+
+    </tr>
+    @foreach (EventsTable item in Model.LeaguesEvents)
+    {
+        <tr>
+            <td>
+                @item.EventDate<br />
+                <strong>@item.AwayTeam</strong><br />
+                <strong>at</strong><br />
+                <strong>@item.HomeTeam</strong>
+            </td>
+            <td>
+                @item.AwayTeam.ToUpper().Substring(0, 3) (@item.SpreadAway)<br />
+                @item.HomeTeam.ToUpper().Substring(0, 3) (@item.SpreadHome)
+            </td>
+
+            <td>
+                @item.AwayTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineAway)<br />
+                @item.HomeTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineHome)
+            </td>
+            <td>
+                <strong>O/U</strong> (@item.TotalAway/@item.TotalHome)
+            </td>
+        </tr>
+    }
+</table>
+

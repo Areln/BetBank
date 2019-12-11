@@ -31,12 +31,13 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    <audio autoplay><source src="~/music/Star Wars Main Theme (Full).mp3" type="audio/mpeg" /></audio>
 
     <div class="topnav" id="myTopnav">
         <a href="../Home/Index">Home</a>
-        <a href="../League/NFLIndex">NFL</a>
-        <a href="../League/NBAIndex">NBA</a>
-        <a href="../League/ESportsIndex">E-Sports</a>
+        <a href="../Event/NFLIndex">NFL</a>
+        <a href="../Event/NBAIndex">NBA</a>
+        <a href="../Event/ESportsIndex">E-Sports</a>
     </div>
 
     <div>
@@ -77,23 +78,27 @@
 
     <div class="graphLinks">
         <ul>
-            <li><a href="#">1 Day ||</a>></li>
-            <li><a href="#">1 Week ||</a>></li>
-            <li><a href="#">1 Month ||</a>></li>
-            <li><a href="#">1 Year</a>></li>
+            <li><a href="#">1 Day ||</a></li>
+            <li><a href="#">1 Week ||</a></li>
+            <li><a href="#">1 Month ||</a></li>
+            <li><a href="#">1 Year</a></li>
         </ul>
     </div>
 
-
+    <div class="betLinkDiv">
+        <ul>
+            <li><a href="#">Track Bets</a></li>
+            <li><a href="#">Added to BB</a></li>
+            <li><a href="#">Withdrew from BB</a></li>
+        </ul>
+    </div>
     //}
 
 }
 
 else
 {
-
-
     <div class="sitePreview">
-        <img src="../img/sportsBetting.jfif" alt="Alternate Text" />
+        <img src="../img/sportsBetting.jfif" alt="Alternate Text" width="1125" />
     </div>
 }
