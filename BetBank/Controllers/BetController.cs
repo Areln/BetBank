@@ -32,12 +32,10 @@ namespace BetBank.Controllers
         //CREATE
         public IActionResult AddBet(RecordOfBets addBet)
         {
-            RecordOfBets newBet = new RecordOfBets();
-
 
             if (ModelState.IsValid)
             {
-                _context.RecordOfBets.Add(newBet);
+                _context.RecordOfBets.Add(addBet);
                 _context.SaveChanges();
 
             }
@@ -55,7 +53,7 @@ namespace BetBank.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateTask(RecordOfBets updateBet)
+        public IActionResult UpdateBetRecord(RecordOfBets updateBet)
         {
             if (ModelState.IsValid)
             {
