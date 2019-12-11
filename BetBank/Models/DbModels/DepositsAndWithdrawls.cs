@@ -9,6 +9,7 @@ namespace BetBank.Models
         public string UserId { get; set; }
         public DateTime TimeOfTransaction { get; set; }
         public double AmountOfTransaction { get; set; }
+        public bool UserMadeTransAction { get; set; }
 
         public virtual AspNetUsers User { get; set; }
     }
