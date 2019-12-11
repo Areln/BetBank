@@ -47,9 +47,16 @@ namespace BetBank.Models
 
 
         public double CalculateROI(UserData currentUserData)
-        {  
-            return currentUserData.BetBankBalance - GetIntitialInvestment(currentUserData) / GetIntitialInvestment(currentUserData) * 100;
+        {
+            
+            return currentUserData.BetBankBalance - GetIntitialInvestment(currentUserData) / GetIntitialInvestment(currentUserData) * .1;
         }
+
+        //public UserData GetUserData(string userId)
+        //{
+
+        //}
+
 
         public double CalculateTheProbabilty()
         {
