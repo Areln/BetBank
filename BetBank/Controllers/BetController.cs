@@ -86,6 +86,10 @@ namespace BetBank.Controllers
         }
 
 
+        public IActionResult Something()
+        {
+            return View();
+        }
 
 
 
