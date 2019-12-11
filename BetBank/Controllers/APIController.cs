@@ -26,8 +26,12 @@ namespace BetBank.Controllers
         //initial event data gathering to put into database
         public async Task<IActionResult> GetSportEvents(int id)
         {
-            //nfl id = 2
-            var response = await _client.GetAsync($"/sports/2/events?include=scores");
+            //nfl id = 2, nba = 4
+            if (id == 0)
+            {
+                id = 4;
+            }
+            var response = await _client.GetAsync($"/sports/{id}/events?include=scores");
             var content = await response.Content.ReadAsAsync<EventsRootobject>(); PopulateSportEvents(content); return View("Index");
         }
         public void PopulateSportEvents(EventsRootobject eventsObject)
@@ -55,6 +59,9 @@ namespace BetBank.Controllers
 
         public IActionResult Index()
         {
+            List<char> vowels = new List<char>() { 'a', 'e'};
+            string hello = "hello";
+
             return View();
         }
     }

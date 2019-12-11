@@ -1,0 +1,18 @@
+﻿@using System.Security.Claims;
+@{
+    ViewData["Title"] = "Balance Transactions";
+}
+@model DepositsAndWithdrawls
+<h1>Place a Bet!</h1>
+
+<form asp-action="AddTransaction" asp-controller="Transaction">
+    <input type="number" name="AmountOfTransaction" value="" />
+
+    <input type="hidden" name="UserMadeTransAction" value="True" />
+    <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
+    <input type="hidden" name="TimeOfTransaction" value="@DateTime.Now" />
+
+    <input type="submit" name="submit" value="Submit" />
+</form>
+
+
