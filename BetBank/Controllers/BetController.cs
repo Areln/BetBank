@@ -28,7 +28,6 @@ namespace BetBank.Controllers
             return View(_context.RecordOfBets.ToList());
         }
 
-
         //CREATE
         public IActionResult AddBet(RecordOfBets addBet)
         {
