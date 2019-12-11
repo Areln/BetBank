@@ -8,10 +8,10 @@ namespace BetBank.Models
 
     public class Rootobject
     {
-        public Class1[] Property1 { get; set; }
+        public NFLSeasonStats[] Property1 { get; set; }
     }
 
-    public class Class1
+    public class NFLSeasonStats
     {
         public DateTime begin_at { get; set; }
         public bool detailed_stats { get; set; }
