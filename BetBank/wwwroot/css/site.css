@@ -32,7 +32,7 @@ for details on configuring this project to bundle and minify static web assets. 
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-duration: 60s;
+    animation-duration: 100s;
 }
 
     .ticker-move:hover {
@@ -123,16 +123,69 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .graphImage {
     float: left;
-    margin-bottom: 30px;
+   
 }
 
-.graphlinks{
+.graphLinks {
     float: left;
-    margin-top: 20px;
+    margin-bottom: 100px;
+    margin-right: 250px;
+    
 }
 
-.graphlinks ul {
-    float: left;
+    .graphLinks ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: lightgray;
+    }
+
+    .graphLinks li {
+        float: left;
+    }
+
+        .graphLinks li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+/* Change the link color to #111 (black) on hover */
+.graphLinks a:hover {
+    background-color: ghostwhite;
+}
+
+
+.betLinkDiv {
+    float: right;
+    
+}
+
+    .betLinkDiv ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: lightgray;
+    }
+
+    .betLinkDiv li {
+        float: left;
+    }
+
+        .betLinkDiv li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+/* Change the link color to #111 (black) on hover */
+.betLinkDiv a:hover {
+    background-color: ghostwhite;
 }
 
 .userStats {
@@ -146,7 +199,36 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /****************/
 
+/* Event controller league index page css*/
 
+.betFilter {
+    float: left;
+    margin-bottom: 30px;
+}
+
+    .betFilter ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: lightgray;
+    }
+
+    .betFilter li {
+        float: left;
+    }
+
+        .betFilter li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+
+
+/******************************************/
 
 
 
