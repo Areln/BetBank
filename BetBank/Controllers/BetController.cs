@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BetBank.Models;
+using BetBank.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BetBank.Controllers
@@ -28,6 +29,33 @@ namespace BetBank.Controllers
             return View(_context.RecordOfBets.ToList());
         }
 
+        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime) 
+        {
+            BetPlacingModel betPlacingModel = new BetPlacingModel();
+            //ticker stuff
+            List<TickerGames> tempTickerGames = new List<TickerGames>();
+            foreach (EventsTable item in _context.EventsTable.ToList())
+            {
+                //if (item.EventDate.Date > DateTime.Today.Date)
+                //{
+                TickerGames newTickerGame = new TickerGames();
+                newTickerGame.HomeTeam = item.HomeTeam;
+                newTickerGame.AwayTeam = item.AwayTeam;
+                newTickerGame.TimeOfEvent = item.EventDate;
+                newTickerGame.EventId = item.EventId;
+                tempTickerGames.Add(newTickerGame);
+                //}
+            }
+
+            betPlacingModel.TickerGames = tempTickerGames;
+
+            //event stuff
+            betPlacingModel.BetType = _BetType;
+            betPlacingModel.EventDate = DateTime.Parse(_eventTime);
+            betPlacingModel.EventId = _eventId;
+
+            return View("BetPlacement", betPlacingModel);
+        }
 
         //CREATE
         public IActionResult AddBet(RecordOfBets addBet)

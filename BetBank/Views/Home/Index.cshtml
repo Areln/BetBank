@@ -19,7 +19,7 @@
             {
                 <div class="ticker-item">
                     @item.TimeOfEvent<br />
-                    @item.HomeTeam @item.HomeOdds<br />
+                    <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent">@item.HomeTeam @item.HomeOdds</a><br />
                     <div style="text-align:center">at</div>
                     @item.AwayTeam @item.AwayOdds<br />
 
@@ -44,45 +44,45 @@
     </div>
 
     @*@if (SignInManager.IsSignedIn(User))
-    {*@
-        <div class="userStats">
-            <h3>User Stats</h3>
-            <table class="table">
-                <tr>
-                    <th>Bet History</th>
-                    <th>Total W/L</th>
-                    <th>Total ROI</th>
-                </tr>
-                <tr>
-                    <td>Today Results</td>
-                    <td>@Model.UserStats.TodayWLRecord</td>
-                    <td>@Model.UserStats.ReturnOnInvestment</td>
-                </tr>
-                <tr>
-                    <td>Last 7 Days</td>
-                    <td>@Model.UserStats.YesterdayWLRecord</td>
-                    <td>@Model.UserStats.ReturnOnInvestment</td>
-                </tr>
-                <tr>
-                    <td>All Time</td>
-                    <td>@Model.UserStats.AllTimeWLRecord</td>
-                    <td>@Model.UserStats.ReturnOnInvestment</td>
-                </tr>
-            </table>
+        {*@
+    <div class="userStats">
+        <h3>User Stats</h3>
+        <table class="table">
+            <tr>
+                <th>Bet History</th>
+                <th>Total W/L</th>
+                <th>Total ROI</th>
+            </tr>
+            <tr>
+                <td>Today Results</td>
+                <td>@Model.UserStats.TodayWLRecord</td>
+                <td>@Model.UserStats.ReturnOnInvestment</td>
+            </tr>
+            <tr>
+                <td>Last 7 Days</td>
+                <td>@Model.UserStats.YesterdayWLRecord</td>
+                <td>@Model.UserStats.ReturnOnInvestment</td>
+            </tr>
+            <tr>
+                <td>All Time</td>
+                <td>@Model.UserStats.AllTimeWLRecord</td>
+                <td>@Model.UserStats.ReturnOnInvestment</td>
+            </tr>
+        </table>
 
-            <p>Leagues and game type user<br /> bets W/L records</p>
+        <p>Leagues and game type user<br /> bets W/L records</p>
 
-            <a href="../Bet/BetHistory">View Bet History</a>
-        </div>
+        <a href="../Bet/BetHistory">View Bet History</a>
+    </div>
 
-        <div class="graphLinks">
-            <ul>
-                <li><a href="#">1 Day ||</a>></li>
-                <li><a href="#">1 Week ||</a>></li>
-                <li><a href="#">1 Month ||</a>></li>
-                <li><a href="#">1 Year</a>></li>
-            </ul>
-        </div>
+    <div class="graphLinks">
+        <ul>
+            <li><a href="#">1 Day ||</a>></li>
+            <li><a href="#">1 Week ||</a>></li>
+            <li><a href="#">1 Month ||</a>></li>
+            <li><a href="#">1 Year</a>></li>
+        </ul>
+    </div>
 
 
     //}
@@ -91,7 +91,7 @@
 
 else
 {
-    
+
 
     <div class="sitePreview">
         <img src="../img/sportsBetting.jfif" alt="Alternate Text" />

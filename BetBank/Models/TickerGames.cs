@@ -14,6 +14,7 @@ namespace BetBank.Models
         public float AwayOdds { get; set; }
         public int FavProbability { get; set; }
         public int GameScore { get; set; }
+        public string EventId { get; set; }
 
     }
 }
