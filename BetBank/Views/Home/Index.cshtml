@@ -31,6 +31,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
+    <audio autoplay><source src="~/music/Star Wars Main Theme (Full).mp3" type="audio/mpeg" /></audio>
 
     <div class="topnav" id="myTopnav">
         <a href="../Home/Index">Home</a>
@@ -98,6 +99,6 @@
 else
 {
     <div class="sitePreview">
-        <img src="../img/sportsBetting.jfif" alt="Alternate Text" width="1125"/>
+        <img src="../img/sportsBetting.jfif" alt="Alternate Text" width="1125" />
     </div>
 }
