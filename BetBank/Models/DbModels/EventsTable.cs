@@ -5,28 +5,33 @@ namespace BetBank.Models
 {
     public partial class EventsTable
     {
+
         public EventsTable()
         {
 
         }
-        public EventsTable(string _EventId, int _SportId, DateTime _EventDate, string _EventStatus, string _HomeTeam, int _HomeScore, string _AwayTeam, int _AwayScore, TimeSpan _GameClock, double _MoneyLineHome, double _MoneyLineAway, double _SpreadHome, double _SpreadAway, double _TotalHome, double _TotalAway, int _LineId)
+        public EventsTable(string event_id, int sport_id, DateTime event_date, string event_status, string homeTeam, int score_home, string awayTeam, int score_away, TimeSpan timeSpan, float moneyline_home, float moneyline_away, float point_spread_home, float point_spread_away, float total_over, float total_under, int line_id, float point_spread_away_money, float point_spread_home_money, float total_over_money, float total_under_money)
         {
-            EventId = _EventId;
-            SportId = _SportId;
-            EventDate = _EventDate;
-            EventStatus = _EventStatus;
-            HomeTeam = _HomeTeam;
-            HomeScore = _HomeScore;
-            AwayTeam = _AwayTeam;
-            AwayScore = _AwayScore;
-            GameClock = _GameClock;
-            MoneyLineHome = _MoneyLineHome;
-            MoneyLineAway = _MoneyLineAway;
-            SpreadAway = _SpreadAway;
-            SpreadHome = _SpreadHome;
-            TotalAway = _TotalAway;
-            TotalHome = _TotalHome;
-            LineId = _LineId;
+            EventId = event_id;
+            SportId = sport_id;
+            EventDate = event_date;
+            EventStatus = event_status;
+            HomeTeam = homeTeam;
+            HomeScore = score_home;
+            AwayTeam = awayTeam;
+            AwayScore = score_away;
+            GameClock = timeSpan;
+            MoneyLineHome = moneyline_home;
+            MoneyLineAway = moneyline_away;
+            SpreadHome = point_spread_home;
+            SpreadAway = point_spread_away;
+            TotalHome = total_over;
+            TotalAway = total_under;
+            LineId = line_id;
+            PointSpreadAwayMoney = point_spread_away_money;
+            PointSpreadHomeMoney = point_spread_home_money;
+            TotalOverMoney = total_over_money;
+            TotalUnderMoney = total_under_money;
         }
 
         public string EventId { get; set; }
@@ -45,5 +50,9 @@ namespace BetBank.Models
         public double TotalHome { get; set; }
         public double TotalAway { get; set; }
         public int LineId { get; set; }
+        public double PointSpreadAwayMoney { get; set; }
+        public double PointSpreadHomeMoney { get; set; }
+        public double TotalUnderMoney { get; set; }
+        public double TotalOverMoney { get; set; }
     }
 }

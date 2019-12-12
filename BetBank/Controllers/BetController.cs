@@ -26,11 +26,14 @@ namespace BetBank.Controllers
         //READ
         public IActionResult ViewOpenBets()
         {
-            return View(_context.RecordOfBets.ToList());
+            //Ivo: Modified Method toview open bets by user
+            string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return View(_context.RecordOfBets.Where(b => b.UserId == id).ToList());
         }
 
         public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam) 
         {
+            //Ivo: Do we need the id of the user anywhere here?
             BetPlacingModel betPlacingModel = new BetPlacingModel();
             //ticker stuff
             List<TickerGames> tempTickerGames = new List<TickerGames>();
@@ -54,7 +57,11 @@ namespace BetBank.Controllers
             betPlacingModel.BetType = _BetType;
             betPlacingModel.EventDate = DateTime.Parse(_eventTime);
             betPlacingModel.EventId = _eventId;
+<<<<<<< HEAD
             betPlacingModel.BetTeam = _betTeam;
+=======
+            
+>>>>>>> 09b16bdac7ed689d3e1b9e8ad693dbd26d0dc041
 
             return View("BetPlacement", betPlacingModel);
         }
@@ -77,8 +84,11 @@ namespace BetBank.Controllers
         //UPDATE
 
         [HttpGet]
-        public IActionResult UpdateTask(int id)
+        public IActionResult UpdateBet(int id)
         {
+            //Ivo: added code for userId
+            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            ViewBag.Id = userId;
             return View(_context.RecordOfBets.Find(id));
         }
 
@@ -100,7 +110,7 @@ namespace BetBank.Controllers
             }
             // not sure of the view to send to; would prefer to be able to do this on the home page.
             // if we cannot i would assume this would go to a view that shows all bets
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("ViewOpenBets");
         }
 
         //DELETE
@@ -112,7 +122,7 @@ namespace BetBank.Controllers
                 _context.RecordOfBets.Remove(selectedBet);
                 _context.SaveChanges();
             }
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("ViewOpenBets");
         }
 
 

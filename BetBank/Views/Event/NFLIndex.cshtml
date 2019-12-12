@@ -13,13 +13,13 @@
             @foreach (EventsTable item in Model.LeaguesEvents)
             {
 
-                <div class="ticker-item">
-                    @item.EventDate<br />
-                    @item.HomeTeam @item.SpreadHome<br />
-                    <div style="text-align:center">at</div>
-                    @item.AwayTeam @item.SpreadAway<br />
+            <div class="ticker-item">
+                @item.EventDate<br />
+                <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.EventDate">@item.HomeTeam @item.SpreadHome</a><br />
+                <div style="text-align:center">at</div>
+                <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.EventDate">@item.AwayTeam @item.SpreadAway</a><br />
 
-                </div>
+            </div>
 
             }
         </div>

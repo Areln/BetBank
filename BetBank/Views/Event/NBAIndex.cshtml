@@ -12,14 +12,14 @@
         <div class="ticker-move">
             @foreach (EventsTable item in Model.LeaguesEvents)
             {
-               
-                    <div class="ticker-item">
-                        @item.EventDate<br />
-                        @item.HomeTeam @item.SpreadHome<br />
-                        <div style="text-align:center">at</div>
-                        @item.AwayTeam @item.SpreadAway<br />
 
-                    </div>
+                <div class="ticker-item">
+                    @item.EventDate<br />
+                    <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.EventDate">@item.HomeTeam @item.SpreadHome</a><br />
+                    <div style="text-align:center">at</div>
+                    <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.EventDate">@item.AwayTeam @item.SpreadAway</a><br />
+
+                </div>
 
             }
         </div>
@@ -44,26 +44,55 @@
     </tr>
     @foreach (EventsTable item in Model.LeaguesEvents)
     {
-            <tr>
-                <td>
-                    @item.EventDate<br />
-                    <strong>@item.AwayTeam</strong><br />
-                    <strong>at</strong><br />
-                    <strong>@item.HomeTeam</strong>
-                </td>
-                <td>
-                    @item.AwayTeam.ToUpper().Substring(0, 3) (@item.SpreadAway)<br />
-                    @item.HomeTeam.ToUpper().Substring(0, 3) (@item.SpreadHome)
-                </td>
+        <tr>
+            <td>
+                @item.EventDate<br />
+                <strong>@item.AwayTeam</strong><br />
+                <strong>at</strong><br />
+                <strong>@item.HomeTeam</strong>
+            </td>
+            <td>
+                @item.AwayTeam.ToUpper().Substring(0, 3) (@item.SpreadAway)<br />
+                @item.HomeTeam.ToUpper().Substring(0, 3) (@item.SpreadHome)<br />
+                @if (item.SpreadHome > item.SpreadAway)
+                {
 
-                <td>
-                    @item.AwayTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineAway)<br />
-                    @item.HomeTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineHome)
-                </td>
-                <td>
-                    <strong>O/U</strong> (@item.TotalAway/@item.TotalHome)
-                </td>
-            </tr>
+                    <label>Favorites: @(item.SpreadHome / (item.SpreadHome + 100) * 100)</label>
+                    <br />
+                    <label>Underdog: @(item.SpreadAway / (item.SpreadAway + 100) * 100)</label>
+                }
+                else
+                {
+
+                    <label>Favorite: @(item.SpreadAway / (item.SpreadAway + 100) * 100)</label>
+                    <br />
+                    <label>Underdog: @(item.SpreadHome / (item.SpreadHome + 100) * 100)</label>
+                }
+
+            </td>
+
+
+            <td>
+                @item.AwayTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineAway)<br />
+                @item.HomeTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineHome)<br />
+                @if (item.SpreadHome > item.SpreadAway)
+                {
+                    <label>Favorites: @(item.PointSpreadHomeMoney * -1 / (item.PointSpreadHomeMoney * -1 + 100) * 100)</label>
+                    <br />
+                    <label>Underdog: @((100 / item.PointSpreadAwayMoney + 100) * 100))</label>
+                }
+                else
+                {
+                    <label>Favorite: @(item.PointSpreadAwayMoney * -1 / (item.PointSpreadAwayMoney * -1 + 100) * 100)</label>
+                    <br />
+                    <label>Underdog: @((100 / item.PointSpreadHomeMoney + 100) * 100)</label>
+                }
+            </td>
+            <td>
+                <strong>O/U</strong> (@item.TotalAway/@item.TotalHome)
+            </td>
+
+        </tr>
     }
 </table>
 
