@@ -50,6 +50,10 @@ namespace BetBank.Controllers
                     leagueEvents.TotalAway = item.TotalAway;
                     leagueEvents.SportId = item.SportId;
                     leagueEvents.EventDate = item.EventDate;
+                    leagueEvents.PointSpreadAwayMoney = item.PointSpreadAwayMoney;
+                    leagueEvents.PointSpreadHomeMoney = item.PointSpreadHomeMoney;
+                    leagueEvents.TotalOverMoney = item.TotalOverMoney;
+                    leagueEvents.TotalUnderMoney = item.TotalUnderMoney;
                     tempLeagueEvents.Add(leagueEvents);
                    
                 }
