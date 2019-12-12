@@ -5,6 +5,8 @@ namespace BetBank.Models
 {
     public partial class EventsTable
     {
+
+
         public EventsTable()
         {
 
