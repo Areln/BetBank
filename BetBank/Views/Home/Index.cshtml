@@ -17,13 +17,16 @@
         <div class="ticker-move">
             @foreach (TickerGames item in Model.TickerGames)
             {
-                <div class="ticker-item">
-                    @item.TimeOfEvent<br />
-                    <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent">@item.HomeTeam @item.HomeOdds</a><br />
-                    <div style="text-align:center">at</div>
-                    @item.AwayTeam @item.AwayOdds<br />
+            <div class="ticker-item">
+                @item.TimeOfEvent<br />
+                <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true">@item.HomeTeam @item.HomeOdds</a><br />
+                @*<a href="../Bet/CreateBet?EventId=@item.EventId&BetType=Spread&EventDate=@item.TimeOfEvent&BetTeam=true">@item.HomeTeam @item.HomeOdds</a><br />*@
 
-                </div>
+                <div style="text-align:center">at</div>
+                <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false">@item.AwayTeam @item.AwayOdds</a><br />
+                <br />
+
+            </div>
             }
         </div>
     </div>
@@ -87,8 +90,8 @@
 
     <div class="betLinkDiv">
         <ul>
-            <li><a href="#">Track Bets</a></li>
-            <li><a href="#">Added to BB</a></li>
+            <li><a href="../Bet/ViewOpenBets">Track Bets</a></li>
+            <li><a href="../Transaction">Add to BB</a></li>
             <li><a href="#">Withdrew from BB</a></li>
         </ul>
     </div>

@@ -29,7 +29,7 @@ namespace BetBank.Controllers
             return View(_context.RecordOfBets.ToList());
         }
 
-        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime) 
+        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam) 
         {
             BetPlacingModel betPlacingModel = new BetPlacingModel();
             //ticker stuff
@@ -49,10 +49,12 @@ namespace BetBank.Controllers
 
             betPlacingModel.TickerGames = tempTickerGames;
 
+
             //event stuff
             betPlacingModel.BetType = _BetType;
             betPlacingModel.EventDate = DateTime.Parse(_eventTime);
             betPlacingModel.EventId = _eventId;
+            betPlacingModel.BetTeam = _betTeam;
 
             return View("BetPlacement", betPlacingModel);
         }

@@ -21,7 +21,16 @@ namespace BetBank.Controllers
         {
             return View("BankBalanceTransaction");
         }
-        [HttpPost]
+        public IActionResult ViewTransactions()
+        {
+            return View(_context.DepositsAndWithdrawls.ToList());
+        }
+        //[HttpGet]
+        //public IActionResult AddTransaction()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
         public IActionResult AddTransaction(DepositsAndWithdrawls transaction)
         {
             if (ModelState.IsValid)

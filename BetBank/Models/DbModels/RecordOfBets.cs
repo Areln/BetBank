@@ -11,6 +11,7 @@ namespace BetBank.Models
         public string BetType { get; set; }
         public DateTime EventDate { get; set; }
         public double AmountBet { get; set; }
+        public bool BetTeam { get; set; }
 
         public virtual AspNetUsers User { get; set; }
     }

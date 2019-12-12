@@ -1,0 +1,16 @@
+﻿
+@using System.Security.Claims;
+@{
+    ViewData["Title"] = "AddTransaction";
+}
+@model DepositsAndWithdrawls
+<h1>AddTransaction</h1>
+
+<form action="../Transaction/AddTransaction" method="post">
+    <input type="hidden" name="TransactionId" value="@Model.TransactionId" />
+    <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
+    <input type="hidden" name="TimeOfTransaction" value="@Model.TimeOfTransaction" />
+    <input type="number" name="AmountOfTransaction" value="@Model.AmountOfTransaction" placeholder="$"/>
+    <input type="radio" name="UserMadeTransAction" value="true" placeholder="Deposit" />
+    <input type="radio" name="UserMadeTransAction" value="false" placeholder="Witdrawl" />
+</form>

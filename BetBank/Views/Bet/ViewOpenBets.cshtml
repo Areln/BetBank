@@ -1,0 +1,28 @@
+﻿@using System.Security.Claims;
+
+@{
+    ViewData["Title"] = "ViewOpenBets";
+}
+@using BetBank.Models.ViewModels
+
+<h1>ViewOpenBets</h1>
+
+<table class="table-active table-bordered text-center border-info">
+    <tr>
+        <th>Bet Id</th>
+        <th>Bet Type</th>
+        <th>Event Date</th>
+        <th>Amount Wagered</th>
+        <th>Team</th>
+    </tr>
+    @foreach (RecordOfBets recordOfBets in Model)
+    {
+<tr>
+    <td>@recordOfBets.BetId</td>
+    <td>@recordOfBets.BetType</td>
+    <td>@recordOfBets.EventDate</td>
+    <td>@recordOfBets.AmountBet</td>
+    <td>@recordOfBets.BetTeam</td>
+</tr>
+    }
+</table>
