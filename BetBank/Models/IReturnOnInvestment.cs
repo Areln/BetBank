@@ -48,30 +48,72 @@ namespace BetBank.Models
 
         public double CalculateROI(UserData currentUserData)
         {
-            
+
             return currentUserData.BetBankBalance - GetIntitialInvestment(currentUserData) / GetIntitialInvestment(currentUserData) * .1;
         }
 
-        //public TickerBets GetBetData(string eventId)
-        //{
-
-        //    foreach (TickerBets oddType in _context.UserData)
-        //    {
-        //        if (entry.UserId == userId)
-        //        {
-        //            return entry;
-
-        //        }
-        //    }
-        //    return null;
-        //}
-
-
-        public double CalculateTheProbabilty()
+        public EventsTable GetEventData(string eventId)
         {
-            throw new NotImplementedException();
+            foreach (EventsTable entry in _context.EventsTable)
+            {
+                if (entry.EventId == eventId)
+                {
+                    return entry;
+
+                }
+            }
+            return null;
+
+
         }
 
+        public double GetBetType(EventsTable betType)
+        {
+            if (betType != null)
+            {
+                var currentGameBetSpreadAway = betType.PointSpreadAwayMoney;
+                var currentGameBetSpreadHome = betType.PointSpreadHomeMoney;
+                var currentGameBetTotalOver = betType.TotalOverMoney;
+                var currentGameBetTotalUnder = betType.TotalUnderMoney;
+
+                foreach (EventsTable entry in _context.EventsTable)
+                {
+                    //narrow down record 
+                    if (entry.EventId == betType.EventId && entry.PointSpreadAwayMoney == betType.PointSpreadAwayMoney)
+                    {
+                        currentGameBetSpreadAway += entry.PointSpreadAwayMoney;
+                        return currentGameBetSpreadAway;
+
+                    }
+                    else if(entry.EventId == betType.EventId && entry.PointSpreadHomeMoney == betType.PointSpreadHomeMoney)
+                    {
+                        currentGameBetSpreadHome += entry.PointSpreadHomeMoney;
+                        return currentGameBetSpreadHome;
+                    }
+                    else if (entry.EventId == betType.EventId && entry.TotalOverMoney == betType.TotalOverMoney)
+                    {
+                        currentGameBetTotalOver += entry.TotalOverMoney;
+                        return currentGameBetTotalOver;
+                    }
+                    else if (entry.EventId == betType.EventId && entry.TotalUnderMoney == betType.TotalUnderMoney)
+                    {
+                        currentGameBetTotalUnder += entry.TotalUnderMoney;
+                        return currentGameBetTotalUnder;
+                    }
+                }
+            }
+            return 0;
+        }
+
+
+        public double CalculateTheProbabilty(EventsTable betType)
+        {
+            
+            return GetBetType(betType) / (GetBetType(betType) + 100) * 100;
+
+            //return 100 / (GetBetType(betType) + 100) * 100;
+
+        }
 
     }
 }

@@ -61,13 +61,13 @@
                     @item.HomeTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineHome)<br />
                     @if (item.SpreadHome > item.SpreadAway)
                     {
-                        <label>Favorites: @(item.PointSpreadHomeMoney / (item.PointSpreadHomeMoney + 100) * 100)</label>
+                        <label>Favorites: @(item.PointSpreadHomeMoney *-1 / (item.PointSpreadHomeMoney *-1 + 100) * 100)</label>
                         <br />
                         <label>Underdog: @((100 / item.PointSpreadAwayMoney +100) * 100))</label>
                     }
                     else
                     {
-                        <label>Favorite: @(item.PointSpreadAwayMoney / (item.PointSpreadAwayMoney + 100) * 100)</label>
+                        <label>Favorite: @(item.PointSpreadAwayMoney *-1 / (item.PointSpreadAwayMoney*-1 + 100) * 100)</label>
                         <br />
                         <label>Underdog: @((100 / item.PointSpreadHomeMoney + 100) * 100)</label>
                     }
@@ -75,6 +75,7 @@
                 <td>
                     <strong>O/U</strong> (@item.TotalAway/@item.TotalHome)
                 </td>
+
             </tr>
     }
 </table>
