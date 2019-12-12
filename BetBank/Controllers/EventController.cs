@@ -51,6 +51,7 @@ namespace BetBank.Controllers
                     leagueEvents.SportId = item.SportId;
                     leagueEvents.EventDate = item.EventDate;
                     tempLeagueEvents.Add(leagueEvents);
+                   
                 }
                 //}
             }

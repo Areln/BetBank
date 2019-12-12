@@ -2,6 +2,11 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 
+h1{
+    text-align: center;
+    font-weight: bold;
+}
+
 /* CSS Ticker code */
 
 @keyframes ticker {
@@ -32,7 +37,7 @@ for details on configuring this project to bundle and minify static web assets. 
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-duration: 100s;
+    animation-duration: 110s;
 }
 
     .ticker-move:hover {
@@ -123,44 +128,13 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .graphImage {
     float: left;
-   
-}
-
-.graphLinks {
-    float: left;
     margin-bottom: 100px;
-    margin-right: 250px;
-    
-}
-
-    .graphLinks ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: lightgray;
-    }
-
-    .graphLinks li {
-        float: left;
-    }
-
-        .graphLinks li a {
-            display: block;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-
-/* Change the link color to #111 (black) on hover */
-.graphLinks a:hover {
-    background-color: ghostwhite;
 }
 
 
 .betLinkDiv {
     float: right;
+    margin-top: 55px;
     
 }
 
