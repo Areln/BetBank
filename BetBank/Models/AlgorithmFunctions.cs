@@ -7,7 +7,7 @@ namespace BetBank.Models
 {
     interface IAlgorithmFunctions
     {
-        double CalculateTheProbabilty();
+        double CalculateTheProbabilty(EventsTable betType);
 
         double CalculateROI(UserData CurrentUserData);
 
