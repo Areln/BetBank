@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿@using System.Security.Claims;
+@using System.Security.Claims;
 
 @{
     ViewData["Title"] = "ViewOpenBets";
@@ -25,34 +24,5 @@
     <td>@recordOfBets.AmountBet</td>
     <td>@recordOfBets.BetTeam</td>
 </tr>
-=======
-﻿
-@{
-    ViewData["Title"] = "ViewOpenBets";
-}
-
-@model List<RecordOfBets>
-<h1 style="text-align:center">Open Bets</h1>
-
-<table class="table">
-    <tr>
-        <th>Bet Id</th>
-        <th>Event Id</th>
-        <th>Event Date</th>
-        <th>Bet Type</th>
-        <th>Amount Bet</th>
-    </tr>
-    @foreach (RecordOfBets bets in Model)
-    {
-        <tr>
-            <td>@bets.BetId</td>
-            <td>@bets.EventId</td>
-            <td>@bets.EventDate</td>
-            <td>@bets.BetType</td>
-            <td>@bets.AmountBet</td>
-            <td><a href="../Bet/UpdateBet?id=@bets.BetId">Update Bet</a></td>
-            <td><a href="../Bet/DeleteBet?id=@bets.BetId">Delete Bet</a></td>
-        </tr>
->>>>>>> 09b16bdac7ed689d3e1b9e8ad693dbd26d0dc041
     }
 </table>

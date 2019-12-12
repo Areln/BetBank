@@ -57,11 +57,7 @@ namespace BetBank.Controllers
             betPlacingModel.BetType = _BetType;
             betPlacingModel.EventDate = DateTime.Parse(_eventTime);
             betPlacingModel.EventId = _eventId;
-<<<<<<< HEAD
             betPlacingModel.BetTeam = _betTeam;
-=======
-            
->>>>>>> 09b16bdac7ed689d3e1b9e8ad693dbd26d0dc041
 
             return View("BetPlacement", betPlacingModel);
         }
