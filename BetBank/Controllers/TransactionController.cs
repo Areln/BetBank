@@ -31,27 +31,41 @@ namespace BetBank.Controllers
         //    return View();
         //}
         //[HttpPost]
-        public IActionResult AddTransaction(DepositsAndWithdrawls transaction)
+        public IActionResult AddTransaction(DepositsAndWithdrawls transaction, bool moneyInOut)
         {
             if (ModelState.IsValid)
             {
-                _context.DepositsAndWithdrawls.Add(transaction);
-                UserData currentUserData;
-                //update userdata balance
-                foreach (UserData item in _context.UserData)
+                if(moneyInOut != true)
                 {
-                    if (item.UserId == transaction.UserId)
-                    {
-                        currentUserData = item;
-                    }
+                    transaction.AmountOfTransaction = transaction.AmountOfTransaction * -1;
+
                 }
-
-
-
+                _context.DepositsAndWithdrawls.Add(transaction);
                 _context.SaveChanges();
+
+                UpdateTransactionHistory(transaction);
+
+
+
+               
 
             }
             return RedirectToAction("Index", "Home");
+        }
+        public void UpdateTransactionHistory(DepositsAndWithdrawls transaction)
+        {
+            //update userdata balance
+            foreach (UserData item in _context.UserData.ToList())
+            {
+                if (item.UserId == transaction.UserId)
+                {
+                    item.BetBankBalance += transaction.AmountOfTransaction;
+                    _context.UserData.Update(item);
+                    _context.SaveChanges();
+                    break;
+                }
+            }
+          
         }
     }
 }

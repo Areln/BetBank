@@ -6,7 +6,11 @@
 <h1>Place a Bet!</h1>
 
 <form asp-action="AddTransaction" asp-controller="Transaction">
-    <input type="number" name="AmountOfTransaction" value="" />
+    <input type="number" name="AmountOfTransaction" value="" /><br />
+                                                               <label>Deposit</label> <br />   
+    <input type="radio" name="moneyInOut" value="True" /> <br />
+                                                          <label>Withdrawl</label> <br />
+    <input type="radio" name="moneyInOut" value="False" /> <br />
 
     <input type="hidden" name="UserMadeTransAction" value="True" />
     <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
