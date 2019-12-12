@@ -79,22 +79,40 @@
         }
                 @if (item.MoneyLineHome > item.MoneyLineAway)
                 {
-                    <label>@((item.MoneyLineAway * -1) / (item.MoneyLineAway * -1 + 100) * 100)</label>
+                    <label>Favorites:@((item.MoneyLineAway * -1) / (item.MoneyLineAway * -1 + 100) * 100)</label>
                     <br />
-                    <label>@((100 / (item.MoneyLineHome + 100)) * 100)</label>
+                    <label>Underdogs:@((100 / (item.MoneyLineHome + 100)) * 100)</label>
                 }
                 else
                 {
-                    <label>@((100 / (item.MoneyLineAway + 100)) * 100)</label>
+                    <label>Favorites:@((100 / (item.MoneyLineAway + 100)) * 100)</label>
                     <br />
-                    <label>@((item.MoneyLineHome * -1) / (item.MoneyLineHome * -1 + 100) * 100)</label>
+                    <label>Underdogs:@((item.MoneyLineHome * -1) / (item.MoneyLineHome * -1 + 100) * 100)</label>
                 }
 
 
             </td>
             <td>
                 <strong>O/U</strong> (@item.TotalAway/@item.TotalHome)
+            <td>
+                @*@item.AwayTeam.ToUpper().Substring(0, 3) (@item.TotalAway)<br />
+                @item.HomeTeam.ToUpper().Substring(0, 3) (@item.TotalHome)<br />*@
+                @if (item.TotalHome > item.TotalAway)
+                {
+
+                    <label>Favorites: @(item.TotalOverMoney * -1 / (item.TotalOverMoney * -1 + 100) * 100)</label>
+                    <br />
+                    <label>Underdog: @(100 / ((item.TotalUnderMoney * -1) + 100) * 100)</label>
+                }
+                else
+                {
+
+                    <label>Favorite: @(item.TotalUnderMoney * -1 / (item.TotalOverMoney * -1 + 100) * 100)</label>
+                    <br />
+                    <label>Underdog: @(100 / ((item.TotalUnderMoney * -1) + 100) * 100)</label>
+                }
             </td>
+            
 
         </tr>
     }
