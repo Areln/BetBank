@@ -5,24 +5,6 @@ namespace BetBank.Models
 {
     public partial class EventsTable
     {
-        private string event_id;
-        private int sport_id;
-        private DateTime event_date;
-        private string event_status;
-        private int score_home;
-        private int score_away;
-        private TimeSpan timeSpan;
-        private float moneyline_home;
-        private float moneyline_away;
-        private float point_spread_home;
-        private float point_spread_away;
-        private float total_over;
-        private float total_under;
-        private int line_id;
-        private float point_spread_away_money;
-        private float point_spread_home_money;
-        private float total_over_money;
-        private float total_under_money;
 
         public EventsTable()
         {
@@ -30,26 +12,26 @@ namespace BetBank.Models
         }
         public EventsTable(string event_id, int sport_id, DateTime event_date, string event_status, string homeTeam, int score_home, string awayTeam, int score_away, TimeSpan timeSpan, float moneyline_home, float moneyline_away, float point_spread_home, float point_spread_away, float total_over, float total_under, int line_id, float point_spread_away_money, float point_spread_home_money, float total_over_money, float total_under_money)
         {
-            this.event_id = event_id;
-            this.sport_id = sport_id;
-            this.event_date = event_date;
-            this.event_status = event_status;
+            EventId = event_id;
+            SportId = sport_id;
+            EventDate = event_date;
+            EventStatus = event_status;
             HomeTeam = homeTeam;
-            this.score_home = score_home;
+            HomeScore = score_home;
             AwayTeam = awayTeam;
-            this.score_away = score_away;
-            this.timeSpan = timeSpan;
-            this.moneyline_home = moneyline_home;
-            this.moneyline_away = moneyline_away;
-            this.point_spread_home = point_spread_home;
-            this.point_spread_away = point_spread_away;
-            this.total_over = total_over;
-            this.total_under = total_under;
-            this.line_id = line_id;
-            this.PointSpreadAwayMoney = point_spread_away_money;
-            this.PointSpreadHomeMoney = point_spread_home_money;
-            this.TotalOverMoney = total_over_money;
-            this.TotalUnderMoney = total_under_money;
+            AwayScore = score_away;
+            GameClock = timeSpan;
+            MoneyLineHome = moneyline_home;
+            MoneyLineAway = moneyline_away;
+            SpreadHome = point_spread_home;
+            SpreadAway = point_spread_away;
+            TotalHome = total_over;
+            TotalAway = total_under;
+            LineId = line_id;
+            PointSpreadAwayMoney = point_spread_away_money;
+            PointSpreadHomeMoney = point_spread_home_money;
+            TotalOverMoney = total_over_money;
+            TotalUnderMoney = total_under_money;
         }
 
         public string EventId { get; set; }
