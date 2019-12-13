@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BetBank.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,8 @@ namespace BetBank.Controllers
         }
         public IActionResult ViewTransactions()
         {
-            return View(_context.DepositsAndWithdrawls.ToList());
+            string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return View(_context.RecordOfBets.Where(b => b.UserId == id).ToList());
         }
         //[HttpGet]
         //public IActionResult AddTransaction()

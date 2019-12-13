@@ -2,14 +2,14 @@
 @{
     ViewData["Title"] = "Balance Transactions";
 }
-@model DepositsAndWithdrawls
+@using BetBank.Models.ViewModels
 <h1>Place a Bet!</h1>
 
 <form asp-action="AddTransaction" asp-controller="Transaction">
     <input type="number" name="AmountOfTransaction" value="" /><br />
-                                                               <label>Deposit</label> <br />   
+    <label>Deposit</label> <br />
     <input type="radio" name="moneyInOut" value="True" /> <br />
-                                                          <label>Withdrawl</label> <br />
+    <label>Withdrawl</label> <br />
     <input type="radio" name="moneyInOut" value="False" /> <br />
 
     <input type="hidden" name="UserMadeTransAction" value="True" />
@@ -19,4 +19,19 @@
     <input type="submit" name="submit" value="Submit" />
 </form>
 
+<table>
+    <tr>
+        <th>Transaction Id</th>
+        <th>Time of Transaction</th>
+        <th>Transaction Amount</th>
 
+    </tr>
+    @foreach (DepositsAndWithdrawls transaction in Model)
+    {
+        <tr>
+            <td>@transaction.TransactionId</td>
+            <td>@transaction.TimeOfTransaction</td>
+            <td>@transaction.AmountOfTransaction</td>
+        </tr>
+    }
+</table>

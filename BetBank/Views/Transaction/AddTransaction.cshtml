@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "AddTransaction";
 }
-@model DepositsAndWithdrawls
+@using BetBank.Models.ViewModels
 <h1>AddTransaction</h1>
 
 <form action="../Transaction/AddTransaction" method="post">
@@ -14,3 +14,20 @@
     <input type="radio" name="UserMadeTransAction" value="true" placeholder="Deposit" />
     <input type="radio" name="UserMadeTransAction" value="false" placeholder="Witdrawl" />
 </form>
+<br /><br />
+      <table>
+          <tr>
+              <th>Transaction Id</th>
+              <th>Time of Transaction</th>
+              <th>Transaction Amount</th>
+
+          </tr>
+            @foreach(DepositsAndWithdrawls transaction in Model)
+            {
+                <tr>
+                    <td>@transaction.TransactionId</td>
+                    <td>@transaction.TimeOfTransaction</td>
+                    <td>@transaction.AmountOfTransaction</td>
+                </tr>
+            }
+      </table>
