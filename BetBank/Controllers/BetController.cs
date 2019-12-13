@@ -55,7 +55,7 @@ namespace BetBank.Controllers
             betPlacingModel.TickerGames = tempTickerGames;
 
 
-            //event stuff
+            //event info
             betPlacingModel.BetType = _BetType;
             betPlacingModel.EventDate = DateTime.Parse(_eventTime);
             betPlacingModel.EventId = _eventId;
