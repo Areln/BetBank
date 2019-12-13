@@ -37,8 +37,6 @@ namespace BetBank.Controllers
 
                 if (item.SportId == 4)
                 {
-
-
                     EventsTable leagueEvents = new EventsTable();
                     leagueEvents.HomeTeam = item.HomeTeam;
                     leagueEvents.AwayTeam = item.AwayTeam;
@@ -55,11 +53,10 @@ namespace BetBank.Controllers
                     leagueEvents.TotalOverMoney = item.TotalOverMoney;
                     leagueEvents.TotalUnderMoney = item.TotalUnderMoney;
                     tempLeagueEvents.Add(leagueEvents);
-                   
+
                 }
                 //}
             }
-
 
             leagueModel.LeagueName = "NBA";
             leagueModel.LeaguesEvents = tempLeagueEvents;
@@ -71,13 +68,13 @@ namespace BetBank.Controllers
             //initialize League model
             LeagueEventsModel leagueModel = new LeagueEventsModel();
 
-            //populate the events table with NBA data
+            //populate the events table with NFL data
             if (_context.EventsTable.Count() < 1)
             {
                 return RedirectToAction("GetSportEvents", "API", 4);
             }
 
-            //populate Events table object with NBA data
+            //populate Events table object with NFL data
             List<EventsTable> tempLeagueEvents = new List<EventsTable>();
             foreach (EventsTable item in _context.EventsTable.ToList())
             {
@@ -103,6 +100,9 @@ namespace BetBank.Controllers
                     leagueEvents.TotalOverMoney = item.TotalOverMoney;
                     leagueEvents.TotalUnderMoney = item.TotalUnderMoney;
                     tempLeagueEvents.Add(leagueEvents);
+
+                   
+                
                 }
                 //}
             }

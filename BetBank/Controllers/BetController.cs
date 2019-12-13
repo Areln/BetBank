@@ -73,7 +73,7 @@ namespace BetBank.Controllers
 
             }
             // Not sure where to return fully
-            return RedirectToAction("Home", "Index");
+            return RedirectToAction("ViewOpenBets");
 
         }
 
