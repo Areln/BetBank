@@ -12,6 +12,7 @@ namespace BetBank.Models
         public string AllTimeWLRecord { get; set; }
         public string YesterdayWLRecord { get; set; }
         public string TodayWLRecord { get; set; }
+        public double Balance { get; set; }
         public float ReturnOnInvestment { get; set; }
         public LeagueHistoryRecord LeagueHistory { get; set; }
 
