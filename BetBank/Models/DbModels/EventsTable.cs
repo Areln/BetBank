@@ -8,9 +8,9 @@ namespace BetBank.Models
 
         public EventsTable()
         {
-
+        
         }
-        public EventsTable(string event_id, int sport_id, DateTime event_date, string event_status, string homeTeam, int score_home, string awayTeam, int score_away, TimeSpan timeSpan, float moneyline_home, float moneyline_away, float point_spread_home, float point_spread_away, float total_over, float total_under, int line_id, float point_spread_away_money, float point_spread_home_money, float total_over_money, float total_under_money)
+        public EventsTable(string event_id, int sport_id, DateTime event_date, string event_status, string homeTeam, int score_home, string awayTeam, int score_away, TimeSpan timeSpan, float moneyline_home, float moneyline_away, float point_spread_home, float point_spread_away, float total_over, float total_under, int line_id, float point_spread_away_money, float point_spread_home_money, float total_over_money, float total_under_money, float totalOver, float totalUnder)
         {
             EventId = event_id;
             SportId = sport_id;
@@ -32,6 +32,8 @@ namespace BetBank.Models
             PointSpreadHomeMoney = point_spread_home_money;
             TotalOverMoney = total_over_money;
             TotalUnderMoney = total_under_money;
+            TotalOver = totalOver;
+            TotalUnder = totalUnder;
         }
 
         public string EventId { get; set; }
@@ -54,5 +56,7 @@ namespace BetBank.Models
         public double PointSpreadHomeMoney { get; set; }
         public double TotalUnderMoney { get; set; }
         public double TotalOverMoney { get; set; }
+        public double TotalOver { get; set; }
+        public double TotalUnder { get; set; }
     }
 }
