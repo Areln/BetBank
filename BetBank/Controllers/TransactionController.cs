@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BetBank.Models;
+using BetBank.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BetBank.Controllers
@@ -20,12 +21,18 @@ namespace BetBank.Controllers
 
         public IActionResult Index()
         {
-            return View("BankBalanceTransaction");
+            TransactionModel tm = new TransactionModel();
+            string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var bankRecord = _context.DepositsAndWithdrawls.Where(b => b.UserId == id).ToList();
+            tm.transaction = bankRecord;
+            var bankTotal = _context.UserData.Where(b => b.UserId == id).ToList();            
+            tm.BBbalance = bankTotal;
+            return View("BankBalanceTransaction", tm);
         }
         public IActionResult ViewTransactions()
         {
             string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return View(_context.RecordOfBets.Where(b => b.UserId == id).ToList());
+            return View(_context.DepositsAndWithdrawls.Where(b => b.UserId == id).ToList());
         }
         //[HttpGet]
         //public IActionResult AddTransaction()
