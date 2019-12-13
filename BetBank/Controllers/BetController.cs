@@ -5,10 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using BetBank.Models;
 using BetBank.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BetBank.Controllers
 {
+    [Authorize]
     public class BetController : Controller
     {
         private readonly BetBankDbContext _context;
@@ -30,7 +32,7 @@ namespace BetBank.Controllers
             string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             return View(_context.RecordOfBets.Where(b => b.UserId == id).ToList());
         }
-
+        
         public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam) 
         {
             //Ivo: Do we need the id of the user anywhere here?
@@ -53,7 +55,7 @@ namespace BetBank.Controllers
             betPlacingModel.TickerGames = tempTickerGames;
 
 
-            //event stuff
+            //event info
             betPlacingModel.BetType = _BetType;
             betPlacingModel.EventDate = DateTime.Parse(_eventTime);
             betPlacingModel.EventId = _eventId;
