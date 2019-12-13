@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BetBank.Models;
 using Microsoft.AspNetCore.Mvc;
 namespace BetBank.Controllers
 {
@@ -20,10 +21,21 @@ namespace BetBank.Controllers
 
 
         }
+        public async Task<IActionResult> GetNFLSeasonStats(int id)
+        {
+
+            var response = await _client.GetAsync($"scores/json/TeamSeasonStats/{id}");
+            var content = await response.Content.ReadAsAsync<NFLSeasonStatsRoot>();
+            return View(content);
+
+        }
         // what do we do with the data now that we can get it?       
         public IActionResult Index()
         {
             return View();
         }
     }
+    // what do we do with the data now that we can get it?       
+   
+    
 }
