@@ -8,6 +8,7 @@ namespace BetBank.Models
         public int Id { get; set; }
         public string UserId { get; set; }
         public double BetBankBalance { get; set; }
+
         public int WinsRecord { get; set; }
         public int LossesRecord { get; set; }
         public double ReturnOnInvestment { get; set; }

@@ -30,3 +30,19 @@
     <input type="number" step=".01" name="AmountBet" value="" placeholder="Bet Amount" />
     <input type="submit" name="" value="Submit" />
 </form>
+<table>
+    <tr>
+        <th>Transaction Id</th>
+        <th>Time of Transaction</th>
+        <th>Transaction Amount</th>
+
+    </tr>
+    @foreach (RecordOfBets bet in Model)
+    {
+        <tr>
+            <td>@transaction.TransactionId.</td>
+            <td>@transaction.TimeOfTransaction</td>
+            <td>@transaction.AmountOfTransaction</td>
+        </tr>
+    }
+</table>
