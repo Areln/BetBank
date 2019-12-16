@@ -1,25 +1,44 @@
 ﻿@{
     ViewData["Title"] = "ViewEvent";
 }
+
+
+@using BetBank.Models.ViewModels
 @model EventsTable
-<h1>@Model.HomeTeam At @Model.AwayTeam</h1>
 
-<h1>@Model.EventDate</h1>
 
-@{
-    switch (Model.EventStatus)
+
+<div class="homeHeader" id="home">
+
+    @if (Model.SportId == 2)
     {
-        case "STATUS_SCHEDULED":
-            <h2>Event Status: Scheduled</h2>
-            break;
-        case "STATUS_FINAL":
-            <h2>Event Status: Finished</h2>
-            <h3>@Model.HomeScore : @Model.AwayScore</h3>
-            break;
-        default:
-            break;
+        <h1 style="padding-bottom: 16px;">NFL Matchup</h1>
     }
-    //lines
-    <h4></h4>
-}
+    else if (Model.SportId == 4)
+    {
+        <h1 style="padding-bottom: 16px;">NBA Matchup</h1>
+    }
+</div>
+
+<div class="eventDiv">
+    <h2>@Model.AwayTeam At @Model.HomeTeam</h2>
+
+    <h2>@Model.EventDate</h2>
+
+    @{
+        switch (Model.EventStatus)
+        {
+            case "STATUS_SCHEDULED":
+                <h2>Event Status: Scheduled</h2>
+                break;
+            case "STATUS_FINAL":
+                <h2>Event Status: Finished</h2>
+                <h3>Final Score: @Model.AwayTeam.ToUpper().Substring(0, 3): @Model.AwayScore to  @Model.HomeTeam.ToUpper().Substring(0, 3): @Model.HomeScore</h3>
+                break;
+            default:
+                break;
+        }
+    }
+</div>
+
 

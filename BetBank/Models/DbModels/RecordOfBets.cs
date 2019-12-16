@@ -14,6 +14,8 @@ namespace BetBank.Models
         public bool BetTeam { get; set; }
         public double BetOdd { get; set; }
 
+        public float BetOdd { get; set; }
+
         public virtual AspNetUsers User { get; set; }
     }
 }
