@@ -16,7 +16,11 @@ namespace BetBank.Controllers
         {
             _context = context;
         }
-
+        public IActionResult ViewEvent(string eventId) 
+        {
+            EventsTable temp = _context.EventsTable.Find(eventId);
+            return View(temp);
+        }
         public IActionResult NBAIndex()
         {
             //initialize League model

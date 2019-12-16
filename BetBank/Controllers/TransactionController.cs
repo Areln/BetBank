@@ -20,7 +20,9 @@ namespace BetBank.Controllers
 
         public IActionResult Index()
         {
-            return View("BankBalanceTransaction");
+            string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var records = _context.DepositsAndWithdrawls.Where(b => b.UserId == id).ToList();
+            return View("BankBalanceTransaction", records);
         }
         public IActionResult ViewTransactions()
         {
@@ -32,7 +34,7 @@ namespace BetBank.Controllers
         //{
         //    return View();
         //}
-        //[HttpPost]
+        [HttpPost]
         public IActionResult AddTransaction(DepositsAndWithdrawls transaction, bool moneyInOut)
         {
             if (ModelState.IsValid)
@@ -46,10 +48,6 @@ namespace BetBank.Controllers
                 _context.SaveChanges();
 
                 UpdateTransactionHistory(transaction);
-
-
-
-               
 
             }
             return RedirectToAction("Index", "Home");

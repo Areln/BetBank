@@ -1,30 +1,33 @@
 @using System.Security.Claims;
+@using BetBank.Models.ViewModels;
 
 @{
     ViewData["Title"] = "ViewOpenBets";
 }
 
-@model List<RecordOfBets>
+@model ViewOpenBetsModel
 <h1 style="text-align:center">Open Bets</h1>
 
 <table class="table">
     <tr>
-        <th>Bet Id</th>
-        <th>Event Id</th>
+        <th>Bet</th>
         <th>Event Date</th>
         <th>Bet Type</th>
+        <th>Odd</th>
         <th>Amount Bet</th>
+        <th></th>
+        <th></th>
     </tr>
-    @foreach (RecordOfBets bets in Model)
+    @foreach (KeyValuePair<string, RecordOfBets> bets in Model.recordOfBets)
     {
         <tr>
-            <td>@bets.BetId</td>
-            <td>@bets.EventId</td>
-            <td>@bets.EventDate</td>
-            <td>@bets.BetType</td>
-            <td>@bets.AmountBet</td>
-            <td><a href="../Bet/UpdateBet?id=@bets.BetId">Update Bet</a></td>
-            <td><a href="../Bet/DeleteBet?id=@bets.BetId">Delete Bet</a></td>
+            <td><a href="../Event/ViewEvent?eventId=@bets.Value.EventId">@bets.Key</a></td>
+            <td>@bets.Value.EventDate</td>
+            <td>@bets.Value.BetType</td>
+            <td>ODD</td>
+            <td>@bets.Value.AmountBet</td>
+            <td><a href="../Bet/UpdateBet?id=@bets.Value.BetId">Update Bet</a></td>
+            <td><a href="../Bet/DeleteBet?id=@bets.Value.BetId">Delete Bet</a></td>
         </tr>
     }
 </table>

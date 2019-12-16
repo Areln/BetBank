@@ -30,10 +30,23 @@ namespace BetBank.Controllers
         {
             //Ivo: Modified Method toview open bets by user
             string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            return View(_context.RecordOfBets.Where(b => b.UserId == id).ToList());
+            ViewOpenBetsModel model = new ViewOpenBetsModel();
+            foreach (var item in _context.RecordOfBets.Where(b => b.UserId == id).ToList())
+            {
+                if (item.BetTeam)
+                {
+                    model.recordOfBets.Add($"{_context.EventsTable.Find(item.EventId).HomeTeam}:{item.BetId}", item);
+                }
+                else
+                {
+                    model.recordOfBets.Add($"{_context.EventsTable.Find(item.EventId).AwayTeam}:{item.BetId}", item);
+                }
+
+            }
+            return View(model);
         }
         
-        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam) 
+        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam, string _odd) 
         {
             //Ivo: Do we need the id of the user anywhere here?
             BetPlacingModel betPlacingModel = new BetPlacingModel();
@@ -46,8 +59,16 @@ namespace BetBank.Controllers
                 TickerGames newTickerGame = new TickerGames();
                 newTickerGame.HomeTeam = item.HomeTeam;
                 newTickerGame.AwayTeam = item.AwayTeam;
+
                 newTickerGame.TimeOfEvent = item.EventDate;
                 newTickerGame.EventId = item.EventId;
+
+                newTickerGame.HomeSpread = (float)item.SpreadHome;
+                newTickerGame.AwaySpread = (float)item.SpreadAway;
+                newTickerGame.HomeMoneyline = (float)item.MoneyLineHome;
+                newTickerGame.AwayMoneyline = (float)item.MoneyLineAway;
+                newTickerGame.HomeTotal = (float)item.TotalHome;
+                newTickerGame.AwayTotal = (float)item.TotalAway;
                 tempTickerGames.Add(newTickerGame);
                 //}
             }
@@ -58,7 +79,8 @@ namespace BetBank.Controllers
             //event info
             betPlacingModel.BetType = _BetType;
             betPlacingModel.EventDate = DateTime.Parse(_eventTime);
-            betPlacingModel.EventId = _eventId;
+            betPlacingModel.Event = _context.EventsTable.Find(_eventId);
+            betPlacingModel.Odd = _odd;
             betPlacingModel.BetTeam = _betTeam;
 
             return View("BetPlacement", betPlacingModel);
@@ -84,10 +106,22 @@ namespace BetBank.Controllers
         [HttpGet]
         public IActionResult UpdateBet(int id)
         {
-            //Ivo: added code for userId
-            string userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            ViewBag.Id = userId;
-            return View(_context.RecordOfBets.Find(id));
+            RecordOfBets bet = _context.RecordOfBets.Find(id);
+            EventsTable betEvent = _context.EventsTable.Find(bet.EventId);
+            
+            //gets the points spread and use a random number gen to get winner and set score for the eventstable
+            betEvent.EventStatus = "STATUS_FINAL";
+            
+            //gets base score for both teams, used for all lines
+            Random random = new Random();
+            var baseScore = random.Next(0, 35);
+            betEvent.HomeScore = (int)(baseScore + (MathF.Abs((float)betEvent.PointSpreadHomeMoney) * random.NextDouble()));
+            betEvent.AwayScore = (int)(baseScore + (MathF.Abs((float)betEvent.PointSpreadAwayMoney) * random.NextDouble()));
+            
+            _context.EventsTable.Update(betEvent);
+            _context.SaveChanges();            //activate BetPayoutCheck();
+            
+            return RedirectToAction("PayoutCheck", "Home", new { eventId = betEvent.EventId });
         }
 
         [HttpPost]

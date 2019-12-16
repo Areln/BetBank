@@ -8,8 +8,9 @@ namespace BetBank.Models.ViewModels
     public class BetPlacingModel
     {
         public List<TickerGames> TickerGames { get; set; }
-        public string EventId { get; set; }
+        public EventsTable Event { get; set; }
         public string BetType { get; set; }
+        public string Odd { get; set; }
         public string BetTeam { get; set; }
         public DateTime EventDate { get; set; }
     }

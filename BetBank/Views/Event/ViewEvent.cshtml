@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "ViewEvent";
+}
+@model EventsTable
+<h1>@Model.HomeTeam At @Model.AwayTeam</h1>
+
+<h1>@Model.EventDate</h1>
+
+@{
+    switch (Model.EventStatus)
+    {
+        case "STATUS_SCHEDULED":
+            <h2>Event Status: Scheduled</h2>
+            break;
+        case "STATUS_FINAL":
+            <h2>Event Status: Finished</h2>
+            <h3>@Model.HomeScore : @Model.AwayScore</h3>
+            break;
+        default:
+            break;
+    }
+    //lines
+    <h4></h4>
+}
+

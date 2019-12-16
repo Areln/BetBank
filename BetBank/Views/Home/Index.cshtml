@@ -17,15 +17,21 @@
         <div class="ticker-move">
             @foreach (TickerGames item in Model.TickerGames)
             {
-            <div class="ticker-item">
-                @item.TimeOfEvent<br />
-                <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true">@item.HomeTeam @item.HomeOdds</a><br />
-                @*<a href="../Bet/CreateBet?EventId=@item.EventId&BetType=Spread&EventDate=@item.TimeOfEvent&BetTeam=true">@item.HomeTeam @item.HomeOdds</a><br />*@
-
-                <div style="text-align:center">at</div>
-                <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false">@item.AwayTeam @item.AwayOdds</a><br />
-                <br />
-            </div>
+                <div class="ticker-item">
+                    @item.TimeOfEvent<br />
+                    <a href="../Event/ViewEvent?eventId=@item.EventId">@item.HomeTeam</a>
+                    [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread">@item.HomeSpread</a>
+                    : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=true" &_odd=@item.HomeMoneyline>@item.HomeMoneyline</a> :
+                    <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeTotal">@item.HomeTotal</a> ]
+                    <br />
+                    <div style="text-align:center">at</div>
+                    <a href="../Event/ViewEvent?eventId=@item.EventId">@item.AwayTeam</a>
+                    [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread">@item.AwaySpread</a>
+                    : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline">@item.AwayMoneyline</a> :
+                    <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayTotal">@item.AwayTotal</a> ]
+                    <br />
+                    <br />
+                </div>
             }
         </div>
     </div>

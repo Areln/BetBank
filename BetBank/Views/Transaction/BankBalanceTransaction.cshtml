@@ -2,15 +2,16 @@
 @{
     ViewData["Title"] = "Balance Transactions";
 }
+@model List<DepositsAndWithdrawls>
 @using BetBank.Models.ViewModels
 <h1>Place a Bet!</h1>
 
 <form asp-action="AddTransaction" asp-controller="Transaction">
-    <input type="number" name="AmountOfTransaction" value="" /><br />
+    <input type="number" step="0.01" name="AmountOfTransaction" value="" /><br />
     <label>Deposit</label> <br />
     <input type="radio" name="moneyInOut" value="True" /> <br />
     <label>Withdrawl</label> <br />
-    <input type="radio" name="moneyInOut" value="False" /> <br />
+    <input type="radio" name="moneyInOut" checked="checked" value="False" /> <br />
 
     <input type="hidden" name="UserMadeTransAction" value="True" />
     <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
@@ -23,15 +24,21 @@
     <tr>
         <th>Transaction Id</th>
         <th>Time of Transaction</th>
+        <th> = </th>
         <th>Transaction Amount</th>
 
     </tr>
+    @{ 
+        int counter = 1;
+    }
     @foreach (DepositsAndWithdrawls transaction in Model)
     {
         <tr>
-            <td>@transaction.TransactionId</td>
+            <td>@counter</td>
             <td>@transaction.TimeOfTransaction</td>
-            <td>@transaction.AmountOfTransaction</td>
+            <td> = </td>
+            <td>@transaction.AmountOfTransaction.ToString("C2")</td>
         </tr>
+        counter++;
     }
 </table>
