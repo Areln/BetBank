@@ -91,11 +91,30 @@ namespace BetBank.Controllers
         //CREATE
         public IActionResult AddBet(RecordOfBets addBet)
         {
+            UserData use = new UserData();
+
+            foreach (UserData userOne in _context.UserData.ToList())
+            {
+                if (userOne.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)
+                {
+                    use = userOne;
+                }
+
+            }
 
             if (ModelState.IsValid)
             {
-                _context.RecordOfBets.Add(addBet);
-                _context.SaveChanges();
+                if (addBet.AmountBet <= use.BetBankBalance)
+                {
+                    _context.RecordOfBets.Add(addBet);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.error = "Not enough money in account to place bet! Enter new amount.";
+                    return RedirectToAction("BetPlacement");
+                }
+              
 
             }
             // Not sure where to return fully
