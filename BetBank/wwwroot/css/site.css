@@ -127,7 +127,7 @@ h1, h2, h3{
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-duration: 125s;
+    animation-duration: 150s;
 }
 
     .ticker-move:hover {

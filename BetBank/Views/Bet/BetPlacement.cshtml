@@ -5,59 +5,91 @@
 @using BetBank.Models.ViewModels
 @model BetPlacingModel
 
+<div class="homeHeader" id="home">
+
+    <h1 style="padding-bottom: 16px;">Bet Placement</h1>
+
+</div>
+
 <div class="tcontainer">
     <div class="ticker-wrap">
         <div class="ticker-move">
             @foreach (TickerGames item in Model.TickerGames)
             {
-                <div class="ticker-item">
-                    @item.TimeOfEvent<br />
-                    <a href="../Event/ViewEvent?_eventId=@item.EventId">@item.HomeTeam</a>
-                    [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread">@item.HomeSpread</a>
-                    : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=true" &_odd=@item.HomeMoneyline>@item.HomeMoneyline</a> :
-                    <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeTotal">@item.HomeTotal</a> ]
-                    <br />
-                    <div style="text-align:center">at</div>
-                    <a href="../Event/ViewEvent?_eventId=@item.EventId">@item.AwayTeam</a>
-                    [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread">@item.AwaySpread</a>
-                    : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline">@item.AwayMoneyline</a> :
-                    <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayTotal">@item.AwayTotal</a> ]
-                    <br />
-                    <br />
-                </div>
+                @if (item.HomeSpread < item.AwaySpread)
+                {
+                    <div class="ticker-item">
+                        @item.TimeOfEvent<br />
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.AwayTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread">@item.AwaySpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline">@item.AwayMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayTotal">@item.AwayTotal</a> ]
+                        <br />
+                        <div style="text-align:center">at</div>
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.HomeTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread">@item.HomeSpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeMoneyline">@item.HomeMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeTotal">@item.HomeTotal</a> ]
+                        <br />
+                        <br />
+                    </div>
+                }
+                else
+                {
+                    <div class="ticker-item">
+                        @item.TimeOfEvent<br />
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.AwayTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread">@item.AwaySpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline">@item.AwayMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayTotal">@item.AwayTotal</a> ]
+                        <br />
+                        <div style="text-align:center">at</div>
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.HomeTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread">@item.HomeSpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeMoneyline">@item.HomeMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeTotal">@item.HomeTotal</a> ]
+                        <br />
+                        <br />
+                    </div>
+                }
             }
         </div>
     </div>
 </div>
 
-<p><h2>Game Date: @Model.Event.EventDate</h2></p>
-<p><h2>@Model.Event.HomeTeam At @Model.Event.AwayTeam</h2></p>
-@{
-    if (Model.BetType == "Total" && Model.BetTeam == "true")
-    {
-        <p><h2>Over: @Model.Odd</h2></p>
-    }
-    else if (Model.BetType == "Total" && Model.BetTeam == "false")
-    {
-        <p><h2>Under: @Model.Odd</h2></p>
-    }
-    else
-    {
-        <p><h2>TEAM NAME : @Model.Odd</h2></p>
-    }
+<p><h3>Game Date: @Model.Event.EventDate</h3></p>
+<p><h3>@Model.Event.HomeTeam At @Model.Event.AwayTeam</h3></p>
+
+@if (Model.BetType == "Total" && Model.BetTeam == "true")
+{
+    <p><h3>Over: @Model.Odd</h3></p>
 }
+else if (Model.BetType == "Total" && Model.BetTeam == "false")
+{
+    <p><h3>Under: @Model.Odd</h3></p>
+}
+else if (Model.BetType != "Total")
+{
+    <p><h3>Odd: @Model.Odd</h3></p>
+}
+
+@if (Model.BetTeam == "false")
+{
+    <p><h3>Team Name: @Model.Event.AwayTeam</h3></p>
+}
+else
+{
+    <p><h3>Team Name: @Model.Event.HomeTeam</h3></p>
+}
+
 
 <p><h3>Bet Type: @Model.BetType</h3></p>
 
 <form action="../Bet/AddBet" method="post">
     <input type="hidden" name="EventId" value="@Model.Event.EventId" />
     <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
-    <label>@Model.EventDate</label><br />
     <input type="hidden" name="EventDate" value="@Model.EventDate" />
-    <label>Match-up: @Model.AwayTeam at @Model.HomeTeam</label><br />
-    <label>Your Pick: <strong>@Model.BetTeam</strong></label><br />
     <input type="hidden" name="BetTeam" value="@Model.BetTeam" />
-    <label>Bet Type: @Model.BetType</label><br />
     <input type="hidden" name="BetType" value="@Model.BetType" />
     <input type="number" name="AmountBet" value="" placeholder="Bet Amount" />
     <input type="submit" name="" value="Submit" />
