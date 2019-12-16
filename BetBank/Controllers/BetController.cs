@@ -27,6 +27,8 @@ namespace BetBank.Controllers
             ViewHistory.UserBetHistory = betHistoy;
             return View();
         }
+
+
         //CRUD ACTIONS//
 
         //READ
@@ -128,10 +130,7 @@ namespace BetBank.Controllers
         }
 
 
-        public IActionResult Something()
-        {
-            return View();
-        }
+       
 
 
 
