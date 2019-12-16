@@ -2,7 +2,97 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 
-h1{
+/****CSS code for new layout (Using W3Schools Template with our own custom edits*/
+
+
+/* Full height image header */
+.homeHeader {
+    background-position: center;
+    background-size: cover;
+    /*background-image: url("../img/sportsBetting.jfif");*/
+    background-color: black;
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+ padding-top: 75px;
+ padding-bottom: 50px;
+
+}
+
+
+
+.homeHeader h1, h2{
+    text-align: center;
+    color: white;
+}
+
+.w3-bar .w3-button {
+    padding: 16px;
+}
+
+
+/*about section*/
+
+.howItWorksSection{
+    color: black;
+    padding-top: 75px;
+    padding-bottom:50px;   
+}
+
+.howItWorksSection p{
+    color: black;
+ 
+}
+
+.iconText{
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/**Team Section****/
+.teamSection {
+    background-color: black;
+    color: white;
+    padding-top: 75px;
+    padding-bottom: 50px;
+}
+    
+/***Pricing Section***/
+    .pricingSection{
+        padding-top:75px;
+        padding-bottom: 50px;
+
+                   }
+
+/***Pricing Section***/
+.contactUs {
+    padding-top: 75px;
+    padding-bottom: 50px;
+    background-color: black;
+
+}
+
+.contactUs h2, p{
+ color: white;
+}
+
+/**************************************************/
+
+
+/*****User stats div*********/
+.userStatsDiv {
+    padding-top: 75px;
+    padding-bottom: 50px;
+}
+
+
+
+/****************************/
+
+
+
+h1, h2, h3{
     text-align: center;
     font-weight: bold;
 }
@@ -37,7 +127,7 @@ h1{
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-duration: 110s;
+    animation-duration: 125s;
 }
 
     .ticker-move:hover {
@@ -48,6 +138,8 @@ h1{
     display: inline-block;
     padding: 0 2rem;
     text-align: center;
+    
+
 }
 /*******************/
 
@@ -165,6 +257,7 @@ h1{
 .userStats {
     background-color: lightgray;
     float: right;
+    height: 450px;
 }
 
     .userStats h3 {
@@ -205,7 +298,19 @@ h1{
 /******************************************/
 
 
+/*********table design*************/
 
+.table tr{
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
+.userStatsDiv tr {
+    border-top-style: none;
+    border-bottom-style: none;
+}
+
+/**********************************/
 
 
 a.navbar-brand {
@@ -268,6 +373,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  
 }
 .footer {
   position: absolute;
