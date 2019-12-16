@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Balance Transactions";
 }
-@model List<DepositsAndWithdrawls>
+@model TransactionModel
 @using BetBank.Models.ViewModels
 <h1>Place a Bet!</h1>
 
@@ -22,23 +22,35 @@
 
 <table>
     <tr>
+        <th>Bet Bank Balance</th>
+    </tr>
+    <tr>
+        <td> @Model.BetBankBalance.ToString("C2");</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
         <th>Transaction Id</th>
         <th>Time of Transaction</th>
         <th> = </th>
         <th>Transaction Amount</th>
 
     </tr>
-    @{ 
-        int counter = 1;
-    }
-    @foreach (DepositsAndWithdrawls transaction in Model)
-    {
-        <tr>
-            <td>@counter</td>
-            <td>@transaction.TimeOfTransaction</td>
-            <td> = </td>
-            <td>@transaction.AmountOfTransaction.ToString("C2")</td>
-        </tr>
-        counter++;
-    }
+</table>
+
+<table>
+@{
+    int counter = 1;
+}
+@foreach (DepositsAndWithdrawls transaction in Model.Transactions)
+{
+    <tr>
+        <td>@counter</td>
+        <td>@transaction.TimeOfTransaction</td>
+        <td> = </td>
+        <td>@transaction.AmountOfTransaction.ToString("C2")</td>
+    </tr>
+    counter++;
+}
 </table>
