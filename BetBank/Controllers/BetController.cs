@@ -21,6 +21,10 @@ namespace BetBank.Controllers
         }
         public IActionResult Index()
         {
+            BetPlacingModel ViewHistory = new BetPlacingModel();
+            string id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var betHistoy = _context.RecordOfBets.Where(b => b.UserId == id).ToList();
+            ViewHistory.UserBetHistory = betHistoy;
             return View();
         }
         //CRUD ACTIONS//
