@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BetBank.Models
 {
-    class IReturnOnInvestment : IAlgorithmFunctions
+    class IReturnOnInvestment 
     {
         private readonly BetBankDbContext _context;
         public IReturnOnInvestment(BetBankDbContext context)
@@ -46,12 +46,11 @@ namespace BetBank.Models
         }
 
 
-        public double CalculateROI(UserData currentUserData)
+        public double CalculateTotalROI(UserData currentUserData)
         {
 
             return currentUserData.BetBankBalance - GetIntitialInvestment(currentUserData) / GetIntitialInvestment(currentUserData) * .1;
         }
-
         public EventsTable GetEventData(string eventId)
         {
             foreach (EventsTable entry in _context.EventsTable)

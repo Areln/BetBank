@@ -93,20 +93,24 @@
                     <th>Total ROI</th>
                 </tr>
                 <tr>
-                    <td>Today Results</td>
-                    <td>@Model.UserStats.TodayWLRecord</td>
-                    <td>@Model.UserStats.ReturnOnInvestment</td>
-                </tr>
-                <tr>
-                    <td>Last 7 Days</td>
-                    <td>@Model.UserStats.YesterdayWLRecord</td>
-                    <td>@Model.UserStats.ReturnOnInvestment</td>
-                </tr>
-                <tr>
                     <td>All Time</td>
                     <td>@Model.UserStats.AllTimeWLRecord</td>
-                    <td>@Model.UserStats.ReturnOnInvestment</td>
+                    <td>@Model.UserStats.ReturnOnInvestment %</td>
                 </tr>
+                <tr>
+                    <th>Bet</th>
+                </tr>
+                @{ 
+                    foreach (KeyValuePair<string, RecordOfBets> item in Model.UserStats.OpenBets)
+                    {
+                        <tr>
+                            
+                            <td><a href="../Event/ViewEvent?eventId=@item.Value.EventId">@item.Key</a></td>
+                            <td>@item.Value.BetType -100</td>
+                            <td>@item.Value.AmountBet</td>
+                        </tr>
+                    }
+                }
             </table>
 
             <p style="text-align:center; color: black;">Leagues and game type user<br /> bets W/L records</p>
