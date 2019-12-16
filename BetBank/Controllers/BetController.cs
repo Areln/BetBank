@@ -88,6 +88,9 @@ namespace BetBank.Controllers
             return View("BetPlacement", betPlacingModel);
         }
 
+
+
+
         //CREATE
         public IActionResult AddBet(RecordOfBets addBet)
         {
@@ -160,10 +163,7 @@ namespace BetBank.Controllers
         }
 
 
-        public IActionResult Something()
-        {
-            return View();
-        }
+      
 
 
 
