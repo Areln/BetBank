@@ -12,5 +12,10 @@ namespace BetBank.Models.ViewModels
         public string BetType { get; set; }
         public string BetTeam { get; set; }
         public DateTime EventDate { get; set; }
+        public string HomeTeam { get; set; }
+        public string AwayTeam { get; set; }
+       
+
+
     }
 }

@@ -33,7 +33,7 @@ namespace BetBank.Controllers
             return View(_context.RecordOfBets.Where(b => b.UserId == id).ToList());
         }
         
-        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam) 
+        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam, string _homeTeam, string _awayTeam) 
         {
             //Ivo: Do we need the id of the user anywhere here?
             BetPlacingModel betPlacingModel = new BetPlacingModel();
@@ -60,6 +60,8 @@ namespace BetBank.Controllers
             betPlacingModel.EventDate = DateTime.Parse(_eventTime);
             betPlacingModel.EventId = _eventId;
             betPlacingModel.BetTeam = _betTeam;
+            betPlacingModel.HomeTeam = _homeTeam;
+            betPlacingModel.AwayTeam = _awayTeam;
 
             return View("BetPlacement", betPlacingModel);
         }

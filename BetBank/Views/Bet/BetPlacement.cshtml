@@ -24,9 +24,13 @@
 <form action="../Bet/AddBet" method="post">
     <input type="hidden" name="EventId" value="@Model.EventId" />
     <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
-    <input type="hidden" name="BetType" value="@Model.BetType" />
+    <label>@Model.EventDate</label><br />
     <input type="hidden" name="EventDate" value="@Model.EventDate" />
+    <label>Match-up: @Model.AwayTeam at @Model.HomeTeam</label><br />
+    <label>Your Pick: <strong>@Model.BetTeam</strong></label><br />
     <input type="hidden" name="BetTeam" value="@Model.BetTeam" />
+    <label>Bet Type: @Model.BetType</label><br />
+    <input type="hidden" name="BetType" value="@Model.BetType" />
     <input type="number" name="AmountBet" value="" placeholder="Bet Amount" />
     <input type="submit" name="" value="Submit" />
 </form>
