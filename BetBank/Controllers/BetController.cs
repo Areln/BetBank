@@ -132,7 +132,44 @@ namespace BetBank.Controllers
         }
 
         //UPDATE
+        int GenScore(int sportId) 
+        {
+            Random random = new Random();
+            int baseScore = 0;
+            int scoreDiff;
+            //if nfl game
+            switch (sportId)
+            {
 
+                case 2:
+                    baseScore = random.Next(0, 32);
+                    scoreDiff = random.Next(3, 7);
+                    if (random.NextDouble() > 0.5)
+                    {
+                        baseScore += scoreDiff;
+                    }
+                    else
+                    {
+                        baseScore -= scoreDiff;
+                    }
+                    break;
+                case 4:
+                    baseScore = random.Next(75, 125);
+                    scoreDiff = random.Next(5, 12);
+                    if (random.NextDouble() > 0.5)
+                    {
+                        baseScore += scoreDiff;
+                    }
+                    else
+                    {
+                        baseScore -= scoreDiff;
+                    }
+                    break;
+                default:
+                    break;
+            }
+                return baseScore;
+        }
         [HttpGet]
         public IActionResult UpdateBet(int id)
         {
@@ -145,9 +182,12 @@ namespace BetBank.Controllers
             //gets base score for both teams, used for all lines
             Random random = new Random();
             var baseScore = random.Next(0, 35);
-            betEvent.HomeScore = (int)(baseScore + (MathF.Abs((float)betEvent.PointSpreadHomeMoney) * random.NextDouble()));
-            betEvent.AwayScore = (int)(baseScore + (MathF.Abs((float)betEvent.PointSpreadAwayMoney) * random.NextDouble()));
-            
+            //sportid: 2 = NFL, 4 = NBA
+
+            betEvent.HomeScore = GenScore(betEvent.SportId);
+            betEvent.AwayScore = GenScore(betEvent.SportId);
+
+
             _context.EventsTable.Update(betEvent);
             _context.SaveChanges();            //activate BetPayoutCheck();
             
