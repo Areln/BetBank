@@ -6,7 +6,11 @@
 }
 
 @model ViewOpenBetsModel
-<h1 style="text-align:center">Open Bets</h1>
+    <div class="homeHeader" id="home">
+
+        <h1 style="padding-bottom: 16px;">Open Bets</h1>
+
+    </div>
 
 <table class="table">
     <tr>
@@ -26,7 +30,7 @@
     <td>@bets.Value.BetType</td>
     @if (bets.Value.BetTeam)
     {
-        <td>+@bets.Value.BetOdd</td>
+        <td>@bets.Value.BetOdd</td>
     }
     else
     {

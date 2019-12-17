@@ -5,51 +5,55 @@
 
 @model BetBank.Models.ViewModels.LeagueEventsModel
 
-    <div class="homeHeader" id="home">
+<div class="homeHeader" id="home">
 
-        <h1 style="padding-bottom: 16px;">NFL Games</h1>
-      
+    <h1 style="padding-bottom: 16px;">NFL Games</h1>
 
-    </div>
+
+</div>
 
 <div class="tcontainer">
     <div class="ticker-wrap">
         <div class="ticker-move">
-            @foreach (EventsTable item in Model.LeaguesEvents)
+            @foreach (TickerGames item in Model.tickerGames)
             {
 
-                @if (item.SpreadHome < item.SpreadAway)
+                @if (item.HomeSpread > item.AwaySpread)
+
                 {
-                    <div class="ticker-item">
-                        @item.EventDate<br />
-                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.AwayTeam</a>
-                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadAway">@item.SpreadAway</a>
-                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineAway">@item.MoneyLineAway</a> :
-                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalAway">@item.TotalAway</a> ]
+                    <div class="ticker-item" @if (item.FavoritedEvent) { @: style="background-color: #FFCC33;"
+                         }>
+
+                        @item.TimeOfEvent<br />
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.AwayTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.AwaySpread&_moneyline=@item.AwaySpreadMoneyLine">@item.AwaySpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Moneyline&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.AwayMoneyline&_moneyline=@item.AwayMoneyline">@item.AwayMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.AwayTotal&_moneyline=@item.AwayTotalMoneyLine">@item.AwayTotal</a> ]
                         <br />
                         <div style="text-align:center">at</div>
-                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.HomeTeam</a>
-                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.SpreadHome">@item.SpreadHome</a>
-                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.EventDate&_betTeam=true" &_odd=@item.MoneyLineHome>@item.MoneyLineHome</a> :
-                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalHome">@item.TotalHome</a> ]
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.HomeTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.HomeSpread&_moneyline=@item.HomeSpreadMoneyLine">@item.HomeSpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Moneyline&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.HomeMoneyline&_moneyline=@item.HomeMoneyline">@item.HomeMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.HomeTotal&_moneyline=@item.HomeTotalMoneyLine">@item.HomeTotal</a> ]
                         <br />
                         <br />
                     </div>
                 }
                 else
                 {
-                    <div class="ticker-item">
-                        @item.EventDate<br />
-                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.AwayTeam</a>
-                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadAway">@item.SpreadAway</a>
-                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineAway">@item.MoneyLineAway</a> :
-                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalAway">@item.TotalAway</a> ]
+                    <div class="ticker-item" @if (item.FavoritedEvent) { @: style="background-color:#FFCC33;"
+                         }>
+                        @item.TimeOfEvent<br />
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.AwayTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread&_moneyline=@item.AwaySpreadMoneyLine">@item.AwaySpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Moneyline&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline&_moneyline=@item.AwayMoneyline">@item.AwayMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.AwayTotal&_moneyline=@item.AwayTotalMoneyLine">@item.AwayTotal</a> ]
                         <br />
                         <div style="text-align:center">at</div>
-                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.HomeTeam</a>
-                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.SpreadHome">@item.SpreadHome</a>
-                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.EventDate&_betTeam=true" &_odd=@item.MoneyLineHome>@item.MoneyLineHome</a> :
-                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalHome">@item.TotalHome</a> ]
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.HomeTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread&_moneyline=@item.HomeSpreadMoneyLine">@item.HomeSpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Moneyline&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeMoneyline&_moneyline=@item.HomeMoneyline">@item.HomeMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.HomeTotal&_moneyline=@item.HomeTotalMoneyLine">@item.HomeTotal</a> ]
                         <br />
                         <br />
                     </div>
@@ -64,9 +68,8 @@
     <a href="../Home/Index">Home</a>
     <a href="../Event/NFLIndex">NFL</a>
     <a href="../Event/NBAIndex">NBA</a>
-    <a href="../Event/ESportsIndex">E-Sports</a>
+    @*<a href="../Event/ESportsIndex">E-Sports</a>*@
 </div>
-
 
 <table class="table">
     <tr>
@@ -88,26 +91,35 @@
                 </a>
             </td>
             <td>
-                @item.AwayTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadAway&_moneyline=@item.PointSpreadAwayMoney">@item.SpreadAway</a>)<br />
-                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.SpreadHome&_moneyline=@item.PointSpreadHomeMoney">@item.SpreadHome</a>)<br />
+
+                <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadAway&_moneyline=@item.PointSpreadAwayMoney'">@item.AwayTeam.ToUpper().Substring(0, 3) @item.SpreadAway</button><br />
+                <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadHome&_moneyline=@item.PointSpreadHomeMoney'">@item.HomeTeam.ToUpper().Substring(0, 3) @item.SpreadHome</button><br />
+
+
                 @if (item.SpreadHome > item.SpreadAway)
                 {
+
 
                     <label><strong>Favorites(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (item.PointSpreadAwayMoney * -1 / (item.PointSpreadAwayMoney * -1 + 100) * 100)))%</label>
                     <br />
                     <label><strong>Underdog(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / ((item.PointSpreadHomeMoney * -1) + 100) * 100)))%</label>
+
                 }
                 else
                 {
+
 
                     <label><strong>Favorites(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (item.PointSpreadHomeMoney * -1 / (item.PointSpreadHomeMoney * -1 + 100) * 100)))%</label>
                     <br />
                     <label><strong>Underdog(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / ((item.PointSpreadAwayMoney * -1) + 100) * 100)))%</label>
                 }
-</td>
+            </td>
             <td>
-                @item.AwayTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineAway&_moneyline=@item.MoneyLineAway">@item.MoneyLineAway</a>)<br />
-                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.MoneyLineHome&_moneyline=@item.MoneyLineHome">@item.MoneyLineHome</a>)<br />
+
+                <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineAway&_moneyline=@item.MoneyLineAway'">@item.AwayTeam.ToUpper().Substring(0, 3) @item.MoneyLineAway</button><br />
+                <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineHome&_moneyline=@item.MoneyLineHome'">@item.HomeTeam.ToUpper().Substring(0, 3) @item.MoneyLineHome</button><br />
+
+
                 @if (item.MoneyLineHome > item.MoneyLineAway)
                 {
                     <label><strong>Favorites(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (item.MoneyLineAway * -1) / (item.MoneyLineAway * -1 + 100) * 100))%</label>
@@ -122,22 +134,24 @@
 
 
                 }
-</td>
+
+
+            </td>
             <td>
-                @item.AwayTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalAway&_moneyline=@item.TotalUnderMoney">@item.TotalAway</a>)<br />
-                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalHome&_moneyline=@item.TotalOverMoney">@item.TotalHome</a>)<br />
+
                 @if (item.TotalHome > item.TotalAway)
                 {
-                    <label><strong>Favorites(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong>@(String.Format("{0:n2}", (item.TotalAway * -1) / (item.TotalAway * -1 + 100) * 100))%</label>
-                    <br />
-                    <label><strong>Underdog(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong>@(String.Format("{0:n2}", (100 / (item.TotalHome + 100)) * 100))%</label>
+                    <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalAway&_moneyline=@item.TotalOverMoney'">@item.TotalAway O</button><br />
+                    <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalHome&_moneyline=@item.TotalUnderMoney'">@item.TotalHome U</button><br />
+
                 }
                 else
                 {
 
-                    <label><strong>Favorites(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (item.TotalHome * -1) / (item.TotalHome * -1 + 100) * 100))%</label>
-                    <br />
-                    <label><strong>Underdog(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / (item.TotalAway + 100)) * 100))%</label>
+
+                    <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalAway&_moneyline=@item.TotalUnderMoney'">@item.TotalAway U</button><br />
+                    <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalHome&_moneyline=@item.TotalOverMoney'">@item.TotalHome O</button><br />
+
 
                 }
 

@@ -51,30 +51,68 @@ namespace BetBank.Controllers
         public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam, string _odd, float _moneyline) 
         {
             //Ivo: Do we need the id of the user anywhere here?
-           
+
             //ticker stuff
             List<TickerGames> tempTickerGames = new List<TickerGames>();
-            foreach (EventsTable item in _context.EventsTable.ToList())
+
+            //ticker games we have bets on
+            foreach (RecordOfBets bets in _context.RecordOfBets.Where(b => b.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value).ToList())
             {
-                //if (item.EventDate.Date > DateTime.Today.Date)
-                //{
                 TickerGames newTickerGame = new TickerGames();
+                EventsTable item = _context.EventsTable.Find(bets.EventId);
+
+                if (bets.EventId == item.EventId)
+                {
+                    newTickerGame.FavoritedEvent = true;
+                }
+
                 newTickerGame.HomeTeam = item.HomeTeam;
                 newTickerGame.AwayTeam = item.AwayTeam;
-
                 newTickerGame.TimeOfEvent = item.EventDate;
                 newTickerGame.EventId = item.EventId;
-
                 newTickerGame.HomeSpread = (float)item.SpreadHome;
                 newTickerGame.AwaySpread = (float)item.SpreadAway;
                 newTickerGame.HomeMoneyline = (float)item.MoneyLineHome;
                 newTickerGame.AwayMoneyline = (float)item.MoneyLineAway;
                 newTickerGame.HomeTotal = (float)item.TotalHome;
                 newTickerGame.AwayTotal = (float)item.TotalAway;
-                tempTickerGames.Add(newTickerGame);
-                //}
+                newTickerGame.HomeSpreadMoneyLine = (float)item.PointSpreadHomeMoney;
+                newTickerGame.AwaySpreadMoneyLine = (float)item.PointSpreadAwayMoney;
+                newTickerGame.HomeTotalMoneyLine = (float)item.TotalUnderMoney;
+                newTickerGame.AwayTotalMoneyLine = (float)item.TotalUnderMoney;
+                if (!tempTickerGames.Contains(newTickerGame))
+                {
+                    tempTickerGames.Add(newTickerGame);
+                }
             }
 
+            foreach (EventsTable item in _context.EventsTable.ToList())
+            {
+                
+                    TickerGames newTickerGame = new TickerGames();
+                    newTickerGame.HomeTeam = item.HomeTeam;
+                    newTickerGame.AwayTeam = item.AwayTeam;
+
+                    newTickerGame.TimeOfEvent = item.EventDate;
+                    newTickerGame.EventId = item.EventId;
+
+                    newTickerGame.HomeSpread = (float)item.SpreadHome;
+                    newTickerGame.AwaySpread = (float)item.SpreadAway;
+                    newTickerGame.HomeMoneyline = (float)item.MoneyLineHome;
+                    newTickerGame.AwayMoneyline = (float)item.MoneyLineAway;
+                    newTickerGame.HomeTotal = (float)item.TotalHome;
+                    newTickerGame.AwayTotal = (float)item.TotalAway;
+                    newTickerGame.HomeSpreadMoneyLine = (float)item.PointSpreadHomeMoney;
+                    newTickerGame.AwaySpreadMoneyLine = (float)item.PointSpreadAwayMoney;
+                    newTickerGame.HomeTotalMoneyLine = (float)item.TotalUnderMoney;
+                    newTickerGame.AwayTotalMoneyLine = (float)item.TotalUnderMoney;
+
+                    if (!tempTickerGames.Contains(newTickerGame))
+                    {
+                        tempTickerGames.Add(newTickerGame);
+                    }
+                
+            }
             betPlacingModel.TickerGames = tempTickerGames;
 
 
