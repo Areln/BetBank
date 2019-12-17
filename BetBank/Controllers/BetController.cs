@@ -47,7 +47,7 @@ namespace BetBank.Controllers
         }
         
 
-        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam, string _odd) 
+        public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam, string _odd, float _moneyline) 
         {
             //Ivo: Do we need the id of the user anywhere here?
             BetPlacingModel betPlacingModel = new BetPlacingModel();
@@ -83,7 +83,7 @@ namespace BetBank.Controllers
             betPlacingModel.Event = _context.EventsTable.Find(_eventId);
             betPlacingModel.Odd = _odd;
             betPlacingModel.BetTeam = _betTeam;
-
+            betPlacingModel.BetMoneyLine = _moneyline;
 
             return View("BetPlacement", betPlacingModel);
         }

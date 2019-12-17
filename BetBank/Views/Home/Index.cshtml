@@ -27,15 +27,15 @@
                     <div class="ticker-item">
                         @item.TimeOfEvent<br />
                         <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.AwayTeam</a>
-                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread">@item.AwaySpread</a>
-                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline">@item.AwayMoneyline</a> :
-                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayTotal">@item.AwayTotal</a> ]
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread&_moneyline=@item.AwaySpreadMoneyLine">@item.AwaySpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline&_moneyline=@item.AwayMoneyline">@item.AwayMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayTotal&_moneyline=@item.AwayTotalMoneyLine">@item.AwayTotal</a> ]
                         <br />
                         <div style="text-align:center">at</div>
                         <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.HomeTeam</a>
-                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread">@item.HomeSpread</a>
-                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeMoneyline">@item.HomeMoneyline</a> :
-                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeTotal">@item.HomeTotal</a> ]
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread&_moneyline=@item.HomeSpreadMoneyLine">@item.HomeSpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeMoneyline&_moneyline=@item.HomeMoneyline">@item.HomeMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeTotal&_moneyline=@item.HomeTotalMoneyLine">@item.HomeTotal</a> ]
                         <br />
                         <br />
                     </div>
@@ -44,16 +44,16 @@
                 {
                     <div class="ticker-item">
                         @item.TimeOfEvent<br />
-                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.AwayTeam</a>
-                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread">@item.AwaySpread</a>
-                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline">@item.AwayMoneyline</a> :
-                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayTotal">@item.AwayTotal</a> ]
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.AwayTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwaySpread&_moneyline=@item.AwaySpreadMoneyLine">@item.AwaySpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayMoneyline&_moneyline=@item.AwayMoneyline">@item.AwayMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=false&_odd=@item.AwayTotal&_moneyline=@item.AwayTotalMoneyLine">@item.AwayTotal</a> ]
                         <br />
                         <div style="text-align:center">at</div>
-                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-down" style="color:red"></i>@item.HomeTeam</a>
-                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread">@item.HomeSpread</a>
-                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeMoneyline">@item.HomeMoneyline</a> :
-                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeTotal">@item.HomeTotal</a> ]
+                        <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.HomeTeam</a>
+                        [ <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Spread&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeSpread&_moneyline=@item.HomeSpreadMoneyLine">@item.HomeSpread</a>
+                        : <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=MoneyLine&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeMoneyline&_moneyline=@item.HomeMoneyline">@item.HomeMoneyline</a> :
+                        <a href="../Bet/CreateBet?_eventId=@item.EventId&_BetType=Total&_eventTime=@item.TimeOfEvent&_betTeam=true&_odd=@item.HomeTotal&_moneyline=@item.HomeTotalMoneyLine">@item.HomeTotal</a> ]
                         <br />
                         <br />
                     </div>
@@ -92,21 +92,35 @@
                     <th>Total W/L</th>
                     <th>Total ROI</th>
                 </tr>
+
                 <tr>
                     <td>All Time</td>
                     <td>@Model.UserStats.AllTimeWLRecord</td>
                     <td>@Model.UserStats.ReturnOnInvestment %</td>
                 </tr>
+            </table>
+            <table class="table" style="border-top-style: none; border-bottom-style: none;">
                 <tr>
-                    <th>Bet</th>
+                    <th>Open Bets</th>
+                    <th></th>
+                    <th></th>
                 </tr>
-                @{ 
+                @{
                     foreach (KeyValuePair<string, RecordOfBets> item in Model.UserStats.OpenBets)
                     {
                         <tr>
-                            
                             <td><a href="../Event/ViewEvent?eventId=@item.Value.EventId">@item.Key</a></td>
-                            <td>@item.Value.BetType @item.Value.BetOdd</td>
+
+                            @item.Value.BetType
+                            @if (item.Value.BetOdd > 0)
+                            {
+                                <td>@item.Value.BetType +@item.Value.BetOdd</td>
+                            }
+                            else
+                            {
+                        <td>@item.Value.BetType @item.Value.BetOdd</td>
+                            }
+
                             <td>@item.Value.AmountBet</td>
                         </tr>
                     }

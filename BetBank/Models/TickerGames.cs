@@ -19,6 +19,9 @@ namespace BetBank.Models
         public int FavProbability { get; set; }
         public int GameScore { get; set; }
         public string EventId { get; set; }
-
+        public float HomeSpreadMoneyLine { get; set; }
+        public float AwaySpreadMoneyLine { get; set; }
+        public float HomeTotalMoneyLine { get; set; }
+        public float AwayTotalMoneyLine { get; set; }
     }
 }
