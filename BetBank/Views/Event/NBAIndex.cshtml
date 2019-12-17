@@ -5,12 +5,12 @@
 
 @model BetBank.Models.ViewModels.LeagueEventsModel
 
-    <div class="homeHeader" id="home">
+<div class="homeHeader" id="home">
 
-        <h1 style="padding-bottom: 16px;">NBA Games</h1>
+    <h1 style="padding-bottom: 16px;">NBA Games</h1>
 
 
-    </div>
+</div>
 
 <div class="tcontainer">
     <div class="ticker-wrap">
@@ -85,10 +85,14 @@
                     <strong>@item.AwayTeam</strong><br />
                     <strong>at</strong><br />
                     <strong>@item.HomeTeam</strong>
-</td>
+                </a>
+            </td>
             <td>
-                @item.AwayTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadAway&_moneyline=@item.PointSpreadAwayMoney">@item.SpreadAway</a>)<br />
-                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.SpreadHome&_moneyline=@item.PointSpreadHomeMoney">@item.SpreadHome</a>)<br />
+
+                <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadAway&_moneyline=@item.PointSpreadAwayMoney'">@item.AwayTeam.ToUpper().Substring(0, 3) @item.SpreadAway</button><br />
+                <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadHome&_moneyline=@item.PointSpreadHomeMoney'">@item.HomeTeam.ToUpper().Substring(0, 3) @item.SpreadHome</button><br />
+
+
                 @if (item.SpreadHome > item.SpreadAway)
                 {
 
@@ -108,8 +112,9 @@
                 }
             </td>
             <td>
-                @item.AwayTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineAway&_moneyline=@item.MoneyLineAway">@item.MoneyLineAway</a>)<br />
-                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.MoneyLineHome&_moneyline=@item.MoneyLineHome">@item.MoneyLineHome</a>)<br />
+
+                <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineAway&_moneyline=@item.MoneyLineAway'">@item.AwayTeam.ToUpper().Substring(0, 3) @item.MoneyLineAway</button><br />
+                <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineHome&_moneyline=@item.MoneyLineHome'">@item.HomeTeam.ToUpper().Substring(0, 3) @item.MoneyLineHome</button><br />
 
 
                 @if (item.MoneyLineHome > item.MoneyLineAway)
@@ -130,20 +135,20 @@
 
             </td>
             <td>
-                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalAway&_moneyline=@item.TotalUnderMoney">@item.TotalAway</a>)<br />
-                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalHome&_moneyline=@item.TotalOverMoney">@item.TotalHome</a>)<br />
+
                 @if (item.TotalHome > item.TotalAway)
                 {
-                    <label><strong>Favorites(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong>@(String.Format("{0:n2}", (item.TotalAway * -1) / (item.TotalAway * -1 + 100) * 100))%</label>
-                    <br />
-                    <label><strong>Underdog(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong>@(String.Format("{0:n2}", (100 / (item.TotalHome + 100)) * 100))%</label>
+                    <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalAway&_moneyline=@item.TotalOverMoney'">@item.TotalAway O</button><br />
+                    <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalHome&_moneyline=@item.TotalUnderMoney'">@item.TotalHome U</button><br />
+
                 }
                 else
                 {
 
-                    <label><strong>Favorites(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (item.TotalHome * -1) / (item.TotalHome * -1 + 100) * 100))%</label>
-                    <br />
-                    <label><strong>Underdog(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / (item.TotalAway + 100)) * 100))%</label>
+
+                    <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalAway&_moneyline=@item.TotalUnderMoney'">@item.TotalAway U</button><br />
+                    <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalHome&_moneyline=@item.TotalOverMoney'">@item.TotalHome O</button><br />
+
 
                 }
 
