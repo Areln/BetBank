@@ -122,7 +122,7 @@ namespace BetBank.Controllers
                 {
 
                     ViewBag.error = "Not enough money in account to place bet! Enter new amount.";
-                    return RedirectToAction("Index", "Home");
+                    
 
                    
                     return View("Error");
@@ -234,6 +234,7 @@ namespace BetBank.Controllers
 
         public IActionResult Error()
         {
+
             return View();
         }
 

@@ -4,13 +4,20 @@
 }
 @model TransactionModel
 @using BetBank.Models.ViewModels
-<h1>Place a Bet!</h1>
-
+<h1>Add or Withdrawl to your Bet Bank Balance!</h1>
+<div class="topnav" id="myTopnav">
+    <a href="../Home/Index">Home</a>
+    <a href="../Event/NFLIndex">NFL</a>
+    <a href="../Event/NBAIndex">NBA</a>
+    @*<a href="../Event/ESportsIndex">E-Sports</a>*@
+</div>
+<br />
+<br />
 <form asp-action="AddTransaction" asp-controller="Transaction">
     <input type="number" step="0.01" name="AmountOfTransaction" value="" /><br />
-    <label>Deposit</label> <br />
+    <label>Deposit:</label> 
     <input type="radio" name="moneyInOut" value="True" /> <br />
-    <label>Withdrawl</label> <br />
+    <label>Withdrawl:</label> 
     <input type="radio" name="moneyInOut" checked="checked" value="False" /> <br />
 
     <input type="hidden" name="UserMadeTransAction" value="True" />
@@ -20,26 +27,26 @@
     <input type="submit" name="submit" value="Submit" />
 </form>
 
-<table>
+<table class="table-bordered table-striped text-center" align="center">
     <tr>
         <th>Bet Bank Balance</th>
     </tr>
     <tr>
-        <td> @Model.BetBankBalance.ToString("C2");</td>
+        <td> @Model.BetBankBalance.ToString("C2")</td>
     </tr>
 </table>
+<br />
+<br />
 
-<table>
+<table class="table-bordered table-striped text-center" align="center">
     <tr>
         <th>Transaction Id</th>
         <th>Time of Transaction</th>
-        <th> = </th>
+
         <th>Transaction Amount</th>
 
     </tr>
-</table>
 
-<table>
 @{
     int counter = 1;
 }
@@ -48,7 +55,7 @@
     <tr>
         <td>@counter</td>
         <td>@transaction.TimeOfTransaction</td>
-        <td> = </td>
+
         <td>@transaction.AmountOfTransaction.ToString("C2")</td>
     </tr>
     counter++;
