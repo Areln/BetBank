@@ -24,7 +24,7 @@
     <td><a href="../Event/ViewEvent?eventId=@bets.Value.EventId">@bets.Key</a></td>
     <td>@bets.Value.EventDate</td>
     <td>@bets.Value.BetType</td>
-    @if (bets.Value.BetOdd > 0)
+    @if (bets.Value.BetTeam)
     {
         <td>+@bets.Value.BetOdd</td>
     }
