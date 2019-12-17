@@ -95,21 +95,26 @@ namespace BetBank.Controllers
         //CREATE
         public IActionResult AddBet(RecordOfBets addBet)
         {
-            UserData use = new UserData();
+            UserData user = new UserData();
 
             foreach (UserData userOne in _context.UserData.ToList())
             {
                 if (userOne.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)
                 {
-                    use = userOne;
+                    user = userOne;
                 }
 
             }
 
             if (ModelState.IsValid)
             {
-                if (addBet.AmountBet <= use.BetBankBalance)
+                //validation to see if amount bet is less than or equal to Bet Bank amount
+                if (addBet.AmountBet <= user.BetBankBalance)
                 {
+                    user.BetBankBalance -= addBet.AmountBet;
+
+                    _context.UserData.Update(user);
+                    _context.SaveChanges();
                     _context.RecordOfBets.Add(addBet);
                     _context.SaveChanges();
                 }
