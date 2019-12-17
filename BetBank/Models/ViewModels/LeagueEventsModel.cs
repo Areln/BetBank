@@ -12,5 +12,7 @@ namespace BetBank.Models.ViewModels
         public List<int> AffiliatesToDisplay { get; set; }
         public List<EventsTable> LeaguesEvents { get; set; }
 
+        public List<TickerGames> tickerGames { get; set; }
+
     }
 }
