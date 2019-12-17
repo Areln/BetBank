@@ -14,6 +14,7 @@ namespace BetBank.Controllers
     public class BetController : Controller
     {
         private readonly BetBankDbContext _context;
+        public BetPlacingModel betPlacingModel = new BetPlacingModel();
 
         public BetController(BetBankDbContext context)
         {
@@ -50,7 +51,7 @@ namespace BetBank.Controllers
         public IActionResult CreateBet(string _eventId, string _BetType, string _eventTime, string _betTeam, string _odd, float _moneyline) 
         {
             //Ivo: Do we need the id of the user anywhere here?
-            BetPlacingModel betPlacingModel = new BetPlacingModel();
+           
             //ticker stuff
             List<TickerGames> tempTickerGames = new List<TickerGames>();
             foreach (EventsTable item in _context.EventsTable.ToList())
@@ -111,8 +112,13 @@ namespace BetBank.Controllers
                 }
                 else
                 {
+
                     ViewBag.error = "Not enough money in account to place bet! Enter new amount.";
                     return RedirectToAction("Index", "Home");
+
+                   
+                    return View("Error");
+
                 }
               
 
@@ -176,6 +182,11 @@ namespace BetBank.Controllers
                 _context.SaveChanges();
             }
             return RedirectToAction("ViewOpenBets");
+        }
+
+        public IActionResult Error()
+        {
+            return View();
         }
 
 
