@@ -90,8 +90,10 @@
                     <strong>@item.HomeTeam</strong>
 </td>
             <td>
+
                 @item.AwayTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadAway&_moneyline=@item.PointSpreadAwayMoney">@item.SpreadAway</a>)<br />
                 @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.SpreadHome&_moneyline=@item.PointSpreadHomeMoney">@item.SpreadHome</a>)<br />
+
                 @if (item.SpreadHome > item.SpreadAway)
                 {
 
@@ -125,7 +127,7 @@
                 {
                     <label><strong>Favorites(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (item.MoneyLineHome * -1) / (item.MoneyLineHome * -1 + 100) * 100))%</label>
                     <br />
-                    <label><strong>Underdog(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / (item.MoneyLineAway + 100)) * 100))%</label>
+                    <label><strong>Underdog(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / (item.MoneyLineAway + 100)) * 100))</label>
 
 
                 }
@@ -133,20 +135,22 @@
 
             </td>
             <td>
+
                 @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalAway&_moneyline=@item.TotalUnderMoney">@item.TotalAway</a>)<br />
                 @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalHome&_moneyline=@item.TotalOverMoney">@item.TotalHome</a>)<br />
+
                 @if (item.TotalHome > item.TotalAway)
                 {
-                    <label><strong>Favorites(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong>@(String.Format("{0:n2}", (item.TotalAway * -1) / (item.TotalAway * -1 + 100) * 100))%</label>
+                    <label>@item.TotalAway O</label>
                     <br />
-                    <label><strong>Underdog(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong>@(String.Format("{0:n2}", (100 / (item.TotalHome + 100)) * 100))%</label>
+                    <label>@item.TotalHome U</label>
                 }
                 else
                 {
 
-                    <label><strong>Favorites(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (item.TotalHome * -1) / (item.TotalHome * -1 + 100) * 100))%</label>
+                    <label>@item.TotalHome O</label>
                     <br />
-                    <label><strong>Underdog(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / (item.TotalAway + 100)) * 100))%</label>
+                    <label>@item.TotalAway U</label>
 
                 }
 
