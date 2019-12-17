@@ -84,7 +84,7 @@ namespace BetBank.Controllers
             betPlacingModel.Odd = _odd;
             betPlacingModel.BetTeam = _betTeam;
             betPlacingModel.BetMoneyLine = _moneyline;
-
+            betPlacingModel.Event = _context.EventsTable.Find(_eventId);
             return View("BetPlacement", betPlacingModel);
         }
 
@@ -112,7 +112,7 @@ namespace BetBank.Controllers
                 else
                 {
                     ViewBag.error = "Not enough money in account to place bet! Enter new amount.";
-                    return RedirectToAction("BetPlacement");
+                    return RedirectToAction("Index", "Home");
                 }
               
 

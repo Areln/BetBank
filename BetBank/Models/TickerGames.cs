@@ -7,6 +7,7 @@ namespace BetBank.Models
 {
     public class TickerGames
     {
+        public bool FavoritedEvent { get; set; }
         public DateTime TimeOfEvent { get; set; }
         public string HomeTeam { get; set; }
         public string AwayTeam { get; set; }

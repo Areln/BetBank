@@ -41,23 +41,7 @@ namespace BetBank.Controllers
 
                 if (item.SportId == 4)
                 {
-                    EventsTable leagueEvents = new EventsTable();
-                    leagueEvents.HomeTeam = item.HomeTeam;
-                    leagueEvents.AwayTeam = item.AwayTeam;
-                    leagueEvents.SpreadHome = item.SpreadHome;
-                    leagueEvents.SpreadAway = item.SpreadAway;
-                    leagueEvents.MoneyLineHome = item.MoneyLineHome;
-                    leagueEvents.MoneyLineAway = item.MoneyLineAway;
-                    leagueEvents.TotalHome = item.TotalHome;
-                    leagueEvents.TotalAway = item.TotalAway;
-                    leagueEvents.SportId = item.SportId;
-                    leagueEvents.EventDate = item.EventDate;
-                    leagueEvents.PointSpreadAwayMoney = item.PointSpreadAwayMoney;
-                    leagueEvents.PointSpreadHomeMoney = item.PointSpreadHomeMoney;
-                    leagueEvents.TotalOverMoney = item.TotalOverMoney;
-                    leagueEvents.TotalUnderMoney = item.TotalUnderMoney;
-                    tempLeagueEvents.Add(leagueEvents);
-
+                    tempLeagueEvents.Add(item);
                 }
                 //}
             }
@@ -86,27 +70,7 @@ namespace BetBank.Controllers
                 //{
                 if (item.SportId == 2)
                 {
-
-
-                    EventsTable leagueEvents = new EventsTable();
-                    leagueEvents.HomeTeam = item.HomeTeam;
-                    leagueEvents.AwayTeam = item.AwayTeam;
-                    leagueEvents.SpreadHome = item.SpreadHome;
-                    leagueEvents.SpreadAway = item.SpreadAway;
-                    leagueEvents.MoneyLineHome = item.MoneyLineHome;
-                    leagueEvents.MoneyLineAway = item.MoneyLineAway;
-                    leagueEvents.TotalHome = item.TotalHome;
-                    leagueEvents.TotalAway = item.TotalAway;
-                    leagueEvents.SportId = item.SportId;
-                    leagueEvents.EventDate = item.EventDate;
-                    leagueEvents.PointSpreadAwayMoney = item.PointSpreadAwayMoney;
-                    leagueEvents.PointSpreadHomeMoney = item.PointSpreadHomeMoney;
-                    leagueEvents.TotalOverMoney = item.TotalOverMoney;
-                    leagueEvents.TotalUnderMoney = item.TotalUnderMoney;
-                    tempLeagueEvents.Add(leagueEvents);
-
-                   
-                
+                    tempLeagueEvents.Add(item);
                 }
                 //}
             }

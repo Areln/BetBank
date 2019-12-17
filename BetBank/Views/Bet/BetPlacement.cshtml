@@ -63,7 +63,7 @@
     <h2 style="color: red;">@ViewBag.error</h2>
 }
 
-<p><h3>Game Date: @Model.Event.EventDate</h3></p>
+<p><h3>Game Date: @Model.EventDate</h3></p>
 <p><h3>@Model.Event.HomeTeam At @Model.Event.AwayTeam</h3></p>
 
 @if (Model.BetType == "Total" && Model.BetTeam == "true")
@@ -99,7 +99,7 @@ else
     <input type="hidden" name="BetType" value="@Model.BetType" />
     <input type="number" name="BetMoneyLine" value="@Model.BetMoneyLine" />
     <input type="number" name="BetOdd" value="@Model.Odd" />
-    <input type="number" name="AmountBet" value="" placeholder="Bet Amount" />
+    <input type="number" step="0.01" name="AmountBet" value="" placeholder="Bet Amount" />
 
     <input type="submit" name="" value="Submit" />
 </form>

@@ -80,14 +80,15 @@
     {
         <tr>
             <td>
-                @item.EventDate<br />
-                <strong>@item.AwayTeam</strong><br />
-                <strong>at</strong><br />
-                <strong>@item.HomeTeam</strong>
-            </td>
+                <a href="../Event/ViewEvent?eventId=@item.EventId">
+                    @item.EventDate<br />
+                    <strong>@item.AwayTeam</strong><br />
+                    <strong>at</strong><br />
+                    <strong>@item.HomeTeam</strong>
+</td>
             <td>
-                @item.AwayTeam.ToUpper().Substring(0, 3) (@item.SpreadAway)<br />
-                @item.HomeTeam.ToUpper().Substring(0, 3) (@item.SpreadHome)<br />
+                @item.AwayTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.SpreadAway&_moneyline=@item.PointSpreadAwayMoney">@item.SpreadAway</a>)<br />
+                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Spread&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.SpreadHome&_moneyline=@item.PointSpreadHomeMoney">@item.SpreadHome</a>)<br />
                 @if (item.SpreadHome > item.SpreadAway)
                 {
 
@@ -107,8 +108,8 @@
                 }
             </td>
             <td>
-                @item.AwayTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineAway)<br />
-                @item.HomeTeam.ToUpper().Substring(0, 3) <strong>ML</strong> (@item.MoneyLineHome)<br />
+                @item.AwayTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineAway&_moneyline=@item.MoneyLineAway">@item.MoneyLineAway</a>)<br />
+                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.MoneyLineHome&_moneyline=@item.MoneyLineHome">@item.MoneyLineHome</a>)<br />
 
 
                 @if (item.MoneyLineHome > item.MoneyLineAway)
@@ -129,9 +130,8 @@
 
             </td>
             <td>
-                <br />
-                <br />
-
+                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.TotalAway&_moneyline=@item.TotalUnderMoney">@item.TotalAway</a>)<br />
+                @item.HomeTeam.ToUpper().Substring(0, 3) (<a href="../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Total&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.TotalHome&_moneyline=@item.TotalOverMoney">@item.TotalHome</a>)<br />
                 @if (item.TotalHome > item.TotalAway)
                 {
                     <label><strong>Favorites(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong>@(String.Format("{0:n2}", (item.TotalAway * -1) / (item.TotalAway * -1 + 100) * 100))%</label>
