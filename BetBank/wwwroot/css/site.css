@@ -100,6 +100,25 @@ h1, h2, h3{
     font-weight: bold;
 }
 
+/****button****/
+.button {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background-color: white;
+    color: #3399FF;
+    outline: solid;
+    outline-color: #3399FF;
+    margin-bottom: 10px;
+}
+
+    .button:hover {
+        background-color: #3399FF;
+        color: white;
+    }
+
+
+/**************/
+
 /* CSS Ticker code */
 
 @keyframes ticker {
@@ -224,12 +243,16 @@ h1, h2, h3{
 .graphImage {
     float: left;
     margin-bottom: 100px;
+    margin-left: 50px;
+    border: solid;
+    border-color: lightgray;
 }
 
 
 .betLinkDiv {
     float: right;
     margin-top: 55px;
+   
     
 }
 
@@ -261,6 +284,7 @@ h1, h2, h3{
     background-color: lightgray;
     float: right;
     height: 450px;
+    margin-right: 65px;
 }
 
     .userStats h3 {
@@ -388,3 +412,5 @@ body {
 .height-full {
     height: 100vh;
 }
+
+
