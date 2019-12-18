@@ -97,7 +97,16 @@
 
                     <label><strong>Favorites(@item.AwayTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (item.PointSpreadAwayMoney * -1 / (item.PointSpreadAwayMoney * -1 + 100) * 100)))%</label>
                     <br />
-                    <label><strong>Underdog(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / ((item.PointSpreadHomeMoney * -1) + 100) * 100)))%</label>
+                    @*<label>(100 / ((@item.PointSpreadHomeMoney * -1) + 100) * 100)</label>*@
+                    if (item.PointSpreadHomeMoney < 0)
+                    {
+                        <label><strong>Underdog(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / ((item.PointSpreadHomeMoney * -1) + 100) * 100)))%</label>
+                    }
+                    else
+                    {
+                        <label><strong>Underdog(@item.HomeTeam.ToUpper().Substring(0, 3)):</strong> @(String.Format("{0:n2}", (100 / ((item.PointSpreadHomeMoney) + 100) * 100)))%</label>
+                    }
+
 
                 }
                 else
@@ -115,7 +124,7 @@
 
 
 
-                @if (item.SpreadAway > item.SpreadHome)
+                @if (item.SpreadAway < item.SpreadHome)
                 {
                     <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=true&_odd=@item.MoneyLineAway&_moneyline=@item.MoneyLineAway'">@item.AwayTeam.ToUpper().Substring(0, 3) @item.MoneyLineAway</button><br />
                     <button class="button" onclick="window.location.href = '../Bet/CreateBet?_eventId=@item.EventId.ToString()&_BetType=Moneyline&_eventTime=@item.EventDate&_betTeam=false&_odd=@item.MoneyLineHome&_moneyline=@item.MoneyLineHome'">@item.HomeTeam.ToUpper().Substring(0, 3) @item.MoneyLineHome</button><br />
