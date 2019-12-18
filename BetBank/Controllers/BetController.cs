@@ -111,6 +111,12 @@ namespace BetBank.Controllers
                 //validation to see if amount bet is less than or equal to Bet Bank amount
                 if (addBet.AmountBet <= user.BetBankBalance)
                 {
+                    DepositsAndWithdrawls newTransaction = new DepositsAndWithdrawls();
+                    newTransaction.AmountOfTransaction = addBet.AmountBet * -1;
+                    newTransaction.TimeOfTransaction = DateTime.Now;
+                    newTransaction.UserId = user.UserId;
+                    newTransaction.UserMadeTransAction = true;
+                    AddPayout(newTransaction, true, user);
                     user.BetBankBalance -= addBet.AmountBet;
 
                     _context.UserData.Update(user);
@@ -220,18 +226,47 @@ namespace BetBank.Controllers
             return RedirectToAction("ViewOpenBets");
         }
 
-        //DELETE
+        
         public IActionResult DeleteBet(int id)
         {
             var selectedBet = _context.RecordOfBets.Find(id);
             if(selectedBet != null)
             {
+                var tempuser = _context.UserData.Where(b => b.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value).ToList();
+                DepositsAndWithdrawls newTransaction = new DepositsAndWithdrawls();
+                newTransaction.AmountOfTransaction = selectedBet.AmountBet;
+                newTransaction.TimeOfTransaction = DateTime.Now;
+                newTransaction.UserId = tempuser[0].UserId;
+                newTransaction.UserMadeTransAction = true;
+                
+                AddPayout(newTransaction, true, tempuser[0]);
+                UpdateBalance(tempuser[0], newTransaction);
+                
+
                 _context.RecordOfBets.Remove(selectedBet);
                 _context.SaveChanges();
             }
             return RedirectToAction("ViewOpenBets");
         }
+        public void UpdateBalance(UserData userData, DepositsAndWithdrawls transaction)
+        {
+            //updates user bank balance
+            userData.BetBankBalance += transaction.AmountOfTransaction;
+            _context.UserData.Update(userData);
+            _context.SaveChanges();
+        }
+        public void AddPayout(DepositsAndWithdrawls transaction, bool moneyInOut, UserData userOfBet)
+        {
+            if (moneyInOut != true)
+            {
+                transaction.AmountOfTransaction = transaction.AmountOfTransaction * -1;
+            }
 
+            //adds the record to the table
+            _context.DepositsAndWithdrawls.Add(transaction);
+            _context.SaveChanges();
+
+        }
         public IActionResult Error()
         {
 

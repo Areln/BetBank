@@ -19,6 +19,7 @@
     <tr>
         <th>Bet</th>
         <th>Event Date</th>
+        <th>Line</th>
         <th>Bet Type</th>
         <th>Odd</th>
         <th>Amount Bet</th>
@@ -28,17 +29,33 @@
     @foreach (KeyValuePair<string, RecordOfBets> bets in Model.recordOfBets)
     {
 <tr>
-    <td><a href="../Event/ViewEvent?eventId=@bets.Value.EventId">@bets.Key</a></td>
+    <td><a href="../Event/ViewEvent?eventId=@bets.Value.EventId">View Event</a></td>
     <td>@bets.Value.EventDate</td>
+    <td>@bets.Value.BetMoneyLine</td>
     <td>@bets.Value.BetType</td>
-    @if (bets.Value.BetTeam)
+    @if (bets.Value.BetType == "Total")
     {
-        <td>+@bets.Value.BetOdd</td>
+        if (bets.Value.BetTeam)
+        {
+            <td>Over @bets.Value.BetOdd</td>
+        }
+        else
+        {
+            <td>Under @bets.Value.BetOdd</td>
+        }
     }
     else
     {
-        <td>@bets.Value.BetOdd</td>
+        @if (bets.Value.BetOdd > 0)
+        {
+            <td>+@bets.Value.BetOdd</td>
+        }
+        else
+        {
+            <td>@bets.Value.BetOdd</td>
+        }
     }
+
     <td>@bets.Value.AmountBet</td>
     <td><a href="../Bet/UpdateBet?id=@bets.Value.BetId">Update Bet</a></td>
     <td><a href="../Bet/DeleteBet?id=@bets.Value.BetId">Delete Bet</a></td>

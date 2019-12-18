@@ -22,6 +22,7 @@
         <div class="ticker-move">
             @foreach (TickerGames item in Model.TickerGames)
             {
+                //negative means favorite
                 @if (item.HomeSpread > item.AwaySpread)
 
                 {
@@ -94,11 +95,25 @@
                     <th>Total W/L</th>
                     <th>Total ROI</th>
                 </tr>
-
                 <tr>
                     <td>All Time</td>
-                    <td>@Model.UserStats.AllTimeWLRecord</td>
+                    <td>@Model.UserStats.TotalWinsRecord / @Model.UserStats.TotalLossRecord</td>
                     <td>@Model.UserStats.ReturnOnInvestment %</td>
+                </tr>
+                <tr>
+                    <td>Spread Bets</td>
+                    <td>@Model.UserStats.SwinsRecord / @Model.UserStats.StiesRecord / @Model.UserStats.SlosesRecord</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Moneyline Bets</td>
+                    <td>@Model.UserStats.MlwinsRecord / @Model.UserStats.MllossesRecord</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Total Bets</td>
+                    <td>@Model.UserStats.TwinsRecord / @Model.UserStats.TlosesRecord</td>
+                    <td></td>
                 </tr>
             </table>
             <table class="table" style="border-top-style: none; border-bottom-style: none;">
