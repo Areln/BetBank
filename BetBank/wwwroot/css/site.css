@@ -83,7 +83,7 @@ for details on configuring this project to bundle and minify static web assets. 
 /*****User stats div*********/
 .userStatsDiv {
     padding-top: 75px;
-    padding-bottom: 50px;
+    padding-bottom: 150px;
 }
 /****************************/
 
@@ -98,6 +98,15 @@ for details on configuring this project to bundle and minify static web assets. 
 h1, h2, h3{
     text-align: center;
     font-weight: bold;
+}
+
+.eventInformation
+{
+    margin-top: 20px;
+}
+
+.formCenter{
+    text-align: center;
 }
 
 /****button****/
@@ -152,9 +161,23 @@ h1, h2, h3{
     animation-duration: 150s;
 }
 
+.ticker-move-home {
+    display: inline-block;
+    white-space: nowrap;
+    padding-right: 100%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: ticker;
+    animation-duration: 200s;
+}
+
     .ticker-move:hover {
         animation-play-state: paused;
     }
+
+.ticker-move-home:hover {
+    animation-play-state: paused;
+}
 
 .ticker-item {
     display: inline-block;
@@ -283,8 +306,10 @@ h1, h2, h3{
 .userStats {
     background-color: lightgray;
     float: right;
-    height: 450px;
+    height: auto;
     margin-right: 65px;
+    overflow: hidden;
+    margin-bottom: 100px;
 }
 
     .userStats h3 {

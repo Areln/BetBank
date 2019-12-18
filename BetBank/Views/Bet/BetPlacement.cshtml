@@ -65,56 +65,58 @@
     @*<a href="../Event/ESportsIndex">E-Sports</a>*@
 </div>
 
-@if (ViewBag.error != "")
-{
-    <h2 style="color: red;">@ViewBag.error</h2>
-}
 
-<p><h3>Game Date: @Model.EventDate</h3></p>
-<p><h3>@Model.Event.HomeTeam At @Model.Event.AwayTeam</h3></p>
+<div class="eventInformation">
+    <p><h3>Game Date: @Model.EventDate</h3></p>
+    <p><h3>@Model.Event.HomeTeam At @Model.Event.AwayTeam</h3></p>
 
-@if (Model.BetType == "Total" && Model.BetTeam == "true")
-{
-    <p><h3>Over: @Model.Odd</h3></p>
-}
-else if (Model.BetType == "Total" && Model.BetTeam == "false")
-{
-    <p><h3>Under: @Model.Odd</h3></p>
-}
-else if (Model.BetType != "Total")
-{
-    <p><h3>Odd: @Model.Odd</h3></p>
-}
-
-@if (Model.BetTeam == "false")
-{
-    <p><h3>Team Name: @Model.Event.AwayTeam</h3></p>
-}
-else
-{
-    <p><h3>Team Name: @Model.Event.HomeTeam</h3></p>
-}
-
-
-<p><h3>Bet Type: @Model.BetType</h3></p>
-
-<form action="../Bet/AddBet" method="post">
-    <input type="hidden" name="EventId" value="@Model.Event.EventId" />
-    <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
-    <input type="hidden" name="EventDate" value="@Model.EventDate" />
-    <input type="hidden" name="BetTeam" value="@Model.BetTeam" />
-    <input type="hidden" name="BetType" value="@Model.BetType" />
-
-    @if (Model.BetType != "Moneyline" || Model.BetType != "MoneyLine")
+    @if (Model.BetType == "Total" && Model.BetTeam == "true")
     {
-
-        <input type="number" name="BetMoneyLine" value="@Model.BetMoneyLine" />
-
+        <p><h3>Over: @Model.Odd</h3></p>
     }
-    <label>Odd</label>
-    <input type="number" step="0.1" name="BetOdd" value="@Model.Odd" />
+    else if (Model.BetType == "Total" && Model.BetTeam == "false")
+    {
+        <p><h3>Under: @Model.Odd</h3></p>
+    }
+    else if (Model.BetType != "Total")
+    {
+        <p><h3>Odd: @Model.Odd</h3></p>
+    }
 
-    <input type="number" step="0.01" name="AmountBet" value="" placeholder="Bet Amount" />
+    @if (Model.BetTeam == "false")
+    {
+        <p><h3>Team Name: @Model.Event.AwayTeam</h3></p>
+    }
+    else
+    {
+        <p><h3>Team Name: @Model.Event.HomeTeam</h3></p>
+    }
 
-    <input type="submit" name="" value="Submit" />
-</form>
+
+    <p><h3>Bet Type: @Model.BetType</h3></p>
+
+    <div class="formCenter">
+        <form action="../Bet/AddBet" method="post">
+            <input type="hidden" name="EventId" value="@Model.Event.EventId" />
+            <input type="hidden" name="UserId" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" />
+            <input type="hidden" name="EventDate" value="@Model.EventDate" />
+            <input type="hidden" name="BetTeam" value="@Model.BetTeam" />
+            <input type="hidden" name="BetType" value="@Model.BetType" />
+
+
+            @if (Model.BetType != "Moneyline")
+            {
+
+                <input type="number" name="BetMoneyLine" value="@Model.BetMoneyLine" />
+
+            }
+            <label>Odd</label>
+            <input type="number" step="0.1" name="BetOdd" value="@Model.Odd" />
+
+            <input type="number" step="0.01" name="AmountBet" value="" placeholder="Bet Amount" />
+
+            <input type="submit" name="" value="Submit" />
+        </form>
+    </div>
+
+</div>

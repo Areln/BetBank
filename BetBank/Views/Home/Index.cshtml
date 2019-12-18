@@ -19,7 +19,7 @@
 
 <div class="tcontainer">
     <div class="ticker-wrap">
-        <div class="ticker-move">
+        <div class="ticker-move-home">
             @foreach (TickerGames item in Model.TickerGames)
             {
                 //negative means favorite
@@ -98,7 +98,7 @@
                 <tr>
                     <td>All Time</td>
                     <td>@Model.UserStats.TotalWinsRecord / @Model.UserStats.TotalLossRecord</td>
-                    <td>@Model.UserStats.ReturnOnInvestment %</td>
+                    <td>@String.Format("{0:n1}", Model.UserStats.ReturnOnInvestment) %</td>
                 </tr>
                 <tr>
                     <td>Spread Bets</td>
@@ -117,46 +117,39 @@
                 </tr>
             </table>
             <table class="table" style="border-top-style: none; border-bottom-style: none;">
-                    <tr>
-                        <th>Open Bets</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    @{
-                        int counter = 1;
-                    }
-                    @{
-                        foreach (KeyValuePair<string, RecordOfBets> item in Model.UserStats.OpenBets)
-                        {
-                            if (counter == 5)
+                <tr>
+                    <th>Open Bets</th>
+                    <th>Bet Type</th>
+                    <th>Bet Amount</th>
+                </tr>
+                @{
+
+                }
+                @{
+                    foreach (KeyValuePair<string, RecordOfBets> item in Model.UserStats.OpenBets)
+                    {
+
+                        <tr>
+                            <td><a href="../Event/ViewEvent?eventId=@item.Value.EventId">@item.Key</a></td>
+                            @if (item.Value.BetOdd > 0)
                             {
-                                break;
+                                <td>@item.Value.BetType +@item.Value.BetOdd</td>
                             }
                             else
                             {
-                                counter++;
+                                <td>@item.Value.BetType @item.Value.BetOdd</td>
                             }
-                            <tr style="overflow: auto;">
-                                <td><a href="../Event/ViewEvent?eventId=@item.Value.EventId">@item.Key</a></td>
-                                @if (item.Value.BetOdd > 0)
-                                {
-                                    <td>@item.Value.BetType +@item.Value.BetOdd</td>
-                                }
-                                else
-                                {
-                                    <td>@item.Value.BetType @item.Value.BetOdd</td>
-                                }
 
-                                <td>@item.Value.AmountBet</td>
-                            </tr>
-
-
-                        }
-                        <tr>
-                            <td><a href="../Bet/ViewOpenBets">Track Bets</a></td>
-                            <td><a href="../Transaction">Deposit/Withdrawal</a></td>
+                            <td>$@item.Value.AmountBet</td>
                         </tr>
+
+
                     }
+                    <tr>
+                        <td><a href="../Bet/ViewOpenBets">Track Bets</a></td>
+                        <td><a href="../Transaction">Deposit/Withdrawal</a></td>
+                    </tr>
+                }
             </table>
 
         </div>
@@ -207,7 +200,7 @@ else
                     <div class="w3-container">
                         <h3>Mike Gomez</h3>
                         <p style="text-align:center; color: grey">C#.Net Developer/CEO & Founder</p>
-                        <p style="text-align: center;">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque el</p>
+                        <p style="text-align: center;">Professional MMA Handicapper and Sports Bettor.</p>
                         <p><button onclick="window.location.href = 'https://github.com/mgomez1701';" class="w3-button w3-light-grey w3-block"><i class="fa fa-github"></i> GitHub</button></p>
                         <p><button onclick="window.location.href = 'https://www.linkedin.com/in/mikegomez1701/';" class="w3-button w3-light-grey w3-block"><i class="fa fa-linkedin-square"></i> LinkedIn</button></p>
                     </div>
@@ -215,11 +208,11 @@ else
             </div>
             <div class="w3-col l3 m6 w3-margin-bottom">
                 <div class="w3-card">
-                    <img src="~/img/Blank-Man-180x180.jpg" alt="Aaron Anderson" style="width:100%; height:300px;">
+                    <img src="~/img/Aaron.jpg" alt="Aaron Anderson" style="width:100%; height:300px;">
                     <div class="w3-container">
                         <h3>Aaron Anderson</h3>
-                        <p style="text-align: center; color: grey;">Coding Guru</p>
-                        <p style="text-align: center;">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                        <p style="text-align: center; color: grey;">Full Stack C#.Net Developer</p>
+                        <p style="text-align: center;">Indie Developer. Problem Solver.</p>
                         <p><button onclick="window.location.href = 'https://github.com/Areln/';" class="w3-button w3-light-grey w3-block"><i class="fa fa-github"></i> GitHub</button></p>
                         <p><button onclick="window.location.href = 'https://www.linkedin.com/in/aarona7728/';" class="w3-button w3-light-grey w3-block"><i class="fa fa-linkedin-square"></i> LinkedIn</button></p>
                     </div>
@@ -231,7 +224,7 @@ else
                     <div class="w3-container">
                         <h3>Christopher Holmes</h3>
                         <p style="text-align: center; color: grey;">C#.Net Developer/Beard Enthusist</p>
-                        <p style="text-align: center;">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                        <p style="text-align: center;">Former Materials Scientist & Engineering Project Manager. Beard Conversationalist</p>
                         <p><button onclick="window.location.href = 'https://github.com/chrishasbeard';" class="w3-button w3-light-grey w3-block"><i class="fa fa-github"></i> GitHub</button></p>
                         <p><button onclick="window.location.href = 'https://www.linkedin.com/in/holmeschristopherd/';" class="w3-button w3-light-grey w3-block"><i class="fa fa-linkedin-square"></i> LinkedIn</button></p>
                     </div>
@@ -243,7 +236,7 @@ else
                     <div class="w3-container">
                         <h3>Ivoire Morrell</h3>
                         <p style="text-align: center; color: grey;">Full Stack C#.Net Developer</p>
-                        <p style="text-align: center;">Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
+                        <p style="text-align: center;">Dynamic Software Developer with experience in coding, debugging, and software testing.</p>
                         <p><button onclick="window.location.href = 'https://github.com/imorrell';" class="w3-button w3-light-grey w3-block"><i class="fa fa-github"></i> GitHub</button></p>
                         <p><button onclick="window.location.href = 'https://www.linkedin.com/in/ivoiremorrell/';" class="w3-button w3-light-grey w3-block"><i class="fa fa-linkedin-square"></i> LinkedIn</button></p>
                     </div>
@@ -331,4 +324,6 @@ else
             <img src="../img/grandCircusMap.PNG" class="w3-image w3-greyscale" style="width:100%;margin-top:48px; height: 400px;">
         </div>
     </div>
+
+
 }
