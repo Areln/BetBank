@@ -88,6 +88,7 @@ namespace BetBank.Controllers
 
             leagueModel.LeagueName = "NBA";
             leagueModel.LeaguesEvents = tempLeagueEvents;
+            leagueModel.tickerGames = temptickergames;
             return View(leagueModel);
         }
 
@@ -156,6 +157,7 @@ namespace BetBank.Controllers
             leagueModel.tickerGames = temptickergames;
             leagueModel.LeagueName = "NFL";
             leagueModel.LeaguesEvents = tempLeagueEvents;
+            leagueModel.tickerGames = temptickergames;
             return View(leagueModel);
         }
 

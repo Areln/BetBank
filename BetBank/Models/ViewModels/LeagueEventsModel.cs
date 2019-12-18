@@ -14,5 +14,7 @@ namespace BetBank.Models.ViewModels
 
         public List<TickerGames> tickerGames { get; set; }
 
+     
+
     }
 }

@@ -158,24 +158,27 @@ h1, h2, h3{
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-duration: 150s;
+    animation-duration: 100s;
 }
 
-.ticker-move-home {
+.ticker-move-home-index {
     display: inline-block;
     white-space: nowrap;
     padding-right: 100%;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: ticker;
-    animation-duration: 200s;
+    animation-duration: 300s;
 }
+
+
+
 
     .ticker-move:hover {
         animation-play-state: paused;
     }
 
-.ticker-move-home:hover {
+.ticker-move-home-index:hover {
     animation-play-state: paused;
 }
 
@@ -274,21 +277,21 @@ h1, h2, h3{
 
 .betLinkDiv {
     float: right;
-    margin-top: 55px;
-   
-    
+    margin-right: 65px;
+    margin-bottom: 50px;
 }
 
     .betLinkDiv ul {
         list-style-type: none;
-        margin: 0;
-        padding: 0;
+        margin-left: 0px;
+        padding-left: 16px;
         overflow: hidden;
         background-color: lightgray;
     }
 
     .betLinkDiv li {
         float: left;
+        text-align: center;
     }
 
         .betLinkDiv li a {
@@ -310,7 +313,9 @@ h1, h2, h3{
     margin-right: 65px;
     overflow: hidden;
     margin-bottom: 100px;
+
 }
+
 
     .userStats h3 {
         text-align: center;

@@ -7,10 +7,7 @@
 
 @model ViewOpenBetsModel
     <div class="homeHeader" id="home">
-
         <h1 style="padding-bottom: 16px;">Open Bets</h1>
-
-
     </div>
 
 <div class="topnav" id="myTopnav">
@@ -36,7 +33,15 @@
 <tr>
     <td><a href="../Event/ViewEvent?eventId=@bets.Value.EventId">View Event</a></td>
     <td>@bets.Value.EventDate</td>
-    <td>@bets.Value.BetMoneyLine</td>
+    @if (bets.Value.BetType == "Moneyline")
+    {
+        <td></td>
+    }
+    else
+    {
+        <td>@bets.Value.BetMoneyLine</td>
+    }
+
     <td>@bets.Value.BetType</td>
     @if (bets.Value.BetType == "Total")
     {

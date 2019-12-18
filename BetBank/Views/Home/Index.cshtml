@@ -19,7 +19,7 @@
 
 <div class="tcontainer">
     <div class="ticker-wrap">
-        <div class="ticker-move-home">
+        <div class="ticker-move-home-index">
             @foreach (TickerGames item in Model.TickerGames)
             {
                 //negative means favorite
@@ -145,15 +145,17 @@
 
 
                     }
-                    <tr>
-                        <td><a href="../Bet/ViewOpenBets">Track Bets</a></td>
-                        <td><a href="../Transaction">Deposit/Withdrawal</a></td>
-                    </tr>
+
                 }
             </table>
+            <div class="betLinkDiv">
+                <ul>
+                    <li><a href="../Bet/ViewOpenBets">Track Bets</a></li>
+                    <li><a href="../Transaction">Deposit/Withdrawal From BB</a></li>
+                </ul>
 
+            </div>
         </div>
-
     </div>
 
 
