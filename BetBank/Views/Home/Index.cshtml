@@ -27,7 +27,7 @@
 
                 {
                     <div class="ticker-item" @if (item.FavoritedEvent) { @: style="background-color: #FFCC33;"
-                               }>
+                         }>
 
                         @item.TimeOfEvent<br />
                         <a href="../Event/ViewEvent?eventId=@item.EventId"><i class="fa fa-chevron-up" style="color:green"></i>@item.AwayTeam</a>
@@ -85,7 +85,7 @@
         <div class="graphImage">
             <iframe width="700" height="450" src="https://app.powerbi.com/reportEmbed?reportId=b9f212ed-b1ca-4a5a-83ae-89182d720d08&autoAuth=true&ctid=63fc817a-d494-4c82-9cf4-c3362b4cd615&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXVzLW5vcnRoLWNlbnRyYWwtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D" frameborder="0" allowFullScreen="true"></iframe>
         </div>
-       
+
         <div class="userStats">
 
             <h3>Balance: @Model.UserStats.Balance.ToString("C")</h3>
@@ -117,48 +117,48 @@
                 </tr>
             </table>
             <table class="table" style="border-top-style: none; border-bottom-style: none;">
-                <tr>
-                    <th>Open Bets</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                @{
-                    int counter = 1;
-                }
-                @{
-                    foreach (KeyValuePair<string, RecordOfBets> item in Model.UserStats.OpenBets)
-                    {
-                        if (counter == 5)
+                    <tr>
+                        <th>Open Bets</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    @{
+                        int counter = 1;
+                    }
+                    @{
+                        foreach (KeyValuePair<string, RecordOfBets> item in Model.UserStats.OpenBets)
                         {
-                            break;
-                        }
-                        else
-                        {
-                            counter++;
-                        }
-                        <tr style="overflow: auto;">
-                            <td><a href="../Event/ViewEvent?eventId=@item.Value.EventId">@item.Key</a></td>
-                            @if (item.Value.BetOdd > 0)
+                            if (counter == 5)
                             {
-                                <td>@item.Value.BetType +@item.Value.BetOdd</td>
+                                break;
                             }
                             else
                             {
-                                <td>@item.Value.BetType @item.Value.BetOdd</td>
+                                counter++;
                             }
+                            <tr style="overflow: auto;">
+                                <td><a href="../Event/ViewEvent?eventId=@item.Value.EventId">@item.Key</a></td>
+                                @if (item.Value.BetOdd > 0)
+                                {
+                                    <td>@item.Value.BetType +@item.Value.BetOdd</td>
+                                }
+                                else
+                                {
+                                    <td>@item.Value.BetType @item.Value.BetOdd</td>
+                                }
 
-                            <td>@item.Value.AmountBet</td>
+                                <td>@item.Value.AmountBet</td>
+                            </tr>
+
+
+                        }
+                        <tr>
+                            <td><a href="../Bet/ViewOpenBets">Track Bets</a></td>
+                            <td><a href="../Transaction">Deposit/Withdrawal</a></td>
                         </tr>
-
-
                     }
-                    <tr>
-                        <td><a href="../Bet/ViewOpenBets">Track Bets</a></td>
-                        <td><a href="../Transaction">Deposit/Withdrawal</a></td>
-                    </tr>
-                }
             </table>
-       
+
         </div>
 
     </div>
